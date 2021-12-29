@@ -1,21 +1,11 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const rawCommands = require('./client-application/slashcmds').slashCmdData
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
 
-const commands = [
-    new SlashCommandBuilder().setName('avatar').setDescription('Get avatar image & url from an user'),
-    new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
-    new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
-]
-    .map(command => command.toJSON());
-
-
-
+const commands = rawCommands.map(command => command.toJSON());
 const rest = new REST({ version: '9' }).setToken(botToken);
-
 
 if(process.argv[2]) {
 

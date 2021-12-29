@@ -2,6 +2,6 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     slashCmdData: [
-        new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+        new SlashCommandBuilder().setName('avatar').setDescription('Get avatar image & url from an user'),
     ]
 }

@@ -1,9 +1,13 @@
 {
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
+    "@discordjs/opus": "github:discordjs/opus",
     "@discordjs/rest": "^0.2.0-canary.0",
     "better-sqlite3": "^7.4.5",
     "discord.js": "^13.5.0",
-    "dotenv": "^10.0.0"
+    "distube": "^3.0.5",
+    "dotenv": "^10.0.0",
+    "node-gyp": "^8.4.1",
+    "node-pre-gyp": "^0.17.0"
   }
 }
