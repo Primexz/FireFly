@@ -13,9 +13,10 @@ const client = new discord.Client({
 varHandl.set('client', client)
 
 //Load EventHandler
-const eventHandler = require('./handlers/EventHandler').init(client)
+require('./handlers/EventHandler').init(client)
 
+//Load CommandHandler
+require('./handlers/CommandHandler')(client)
 
-
-
+//Login with Token from env Variable
 client.login(botToken)
