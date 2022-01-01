@@ -8,6 +8,9 @@ module.exports = {
     permissions: [],
 
     async execute(client, interaction) {
+
+        const queue = dispatc
+
         client.distube.pause(interaction.guild)
     },
 };

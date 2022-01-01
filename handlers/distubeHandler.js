@@ -3,12 +3,13 @@ const discordClient = require('../handlers/VariableHandler').client
 const {SpotifyPlugin} = require("@distube/spotify");
 const Discord = require('discord.js')
 const utils = require('../modules/utils')
+const {SoundCloudPlugin} = require("@distube/soundcloud");
 
 discordClient.distube = new DisTube(discordClient, {
     leaveOnStop: false,
     emitNewSongOnly: true,
     updateYouTubeDL: false,
-    plugins: [new SpotifyPlugin()],
+    plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
 })
 
 
@@ -28,7 +29,10 @@ discordClient.distube
                     .addField("Duration", song.formattedDuration)
                     .addField('Requested by', `${song.user}`)
                     .addField('Status', status(queue))
-                    .setFooter("FireFly Bot", discordClient.user.displayAvatarURL({dynamic: true}))
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
                     .setTimestamp(new Date())]
             })
         }
@@ -53,5 +57,4 @@ discordClient.distube
         console.error(e)
     })
     .on("empty", queue => queue.textChannel.send("Channel is empty. Leaving the channel"))
-    .on("searchNoResult", message => message.channel.send(`${client.emotes.error} | No result found!`))
     .on("finish", queue => queue.textChannel.send("Finished!"))

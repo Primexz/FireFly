@@ -3,8 +3,10 @@
     "@discordjs/builders": "^0.11.0",
     "@discordjs/opus": "github:discordjs/opus",
     "@discordjs/rest": "^0.2.0-canary.0",
+    "@distube/soundcloud": "^1.0.0",
     "@distube/spotify": "^1.0.0",
     "better-sqlite3": "^7.4.5",
+    "bufferutil": "^4.0.5",
     "discord.js": "^13.5.0",
     "distube": "^3.0.5",
     "dotenv": "^10.0.0",
@@ -12,6 +14,7 @@
     "libsodium-wrappers": "^0.7.9",
     "node-gyp": "^8.4.1",
     "node-pre-gyp": "^0.17.0",
-    "sodium": "^3.0.2"
+    "sodium": "^3.0.2",
+    "utf-8-validate": "^5.0.7"
   }
 }

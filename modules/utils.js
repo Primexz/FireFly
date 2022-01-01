@@ -8,6 +8,9 @@ module.exports = {
     },
     Icons: {
         music: "🎵 "
+    },
+    Embeds: {
+        footerText: "FireFly Bot"
     }
 
 
