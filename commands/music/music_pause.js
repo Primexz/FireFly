@@ -4,7 +4,7 @@ const Permissions = Discord.Permissions.FLAGS
 
 module.exports = {
 
-    name: 'pause',
+    name: 'music_pause',
     permissions: [],
 
     async execute(client, interaction) {
