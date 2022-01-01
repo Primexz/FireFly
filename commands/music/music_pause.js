@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const utils = require("../../modules/utils");
-const {client: discordClient} = require("../../handlers/VariableHandler");
+const discordClient = require("../../handlers/VariableHandler").client;
 
 const Permissions = Discord.Permissions.FLAGS
 

@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const fs = require('fs')
 const utils = require("../modules/utils");
-const discordClient = require("../handlers/VariableHandler");
+const discordClient = require("../handlers/VariableHandler").client;
 module.exports = async (client) => {
 
     console.log("Loading Commands..")
