@@ -6,6 +6,7 @@ module.exports = {
     },
     set: function (name, event) {
         if (!name || !event || !['[object Function]', '[AsyncFunction]', '[object AsyncFunction]'].includes({}.toString.call(event))) return error('Invalid event object.');
+
         function CallEvent(...args) {
             try {
                 event(require('../handlers/VariableHandler').client, ...args);
@@ -13,6 +14,7 @@ module.exports = {
                 console.log(err);
             }
         }
+
         this.client.on(name, CallEvent);
 
         const EventObject = {
