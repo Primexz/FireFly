@@ -2,7 +2,7 @@ const discord = require('discord.js');
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
 const varHandl = require("./handlers/VariableHandler")
-const db = require('better-sqlite3')('FireFly-DB.db');
+const db = require('better-sqlite3')('FireFly-DB.sqlite');
 
 //Create new DC Client and assign Flags
 const client = new discord.Client({
@@ -17,6 +17,9 @@ require('./handlers/EventHandler').init(client)
 
 //Load CommandHandler
 require('./handlers/CommandHandler')(client)
+
+//Load distubeHandler
+require('./handlers/distubeHandler')
 
 //Login with Token from env Variable
 client.login(botToken)
