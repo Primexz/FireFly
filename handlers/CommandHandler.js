@@ -1,5 +1,7 @@
 const Discord = require('discord.js')
 const fs = require('fs')
+const utils = require("../modules/utils");
+const {client: discordClient} = require("../handlers/VariableHandler");
 module.exports = async (client) => {
 
     console.log("Loading Commands..")
@@ -30,7 +32,21 @@ module.exports = async (client) => {
         const command = client.commands.get(commandFileName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandFileName));
 
 
-        if (!command) return console.log(`Invalid Slash Command executed: ${commandFileName}`)
+        if (!command) {
+            interaction.reply({
+                ephemeral: true,
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Error)
+                    .setTitle(`${utils.Icons.error} Invalid Command`)
+                    .setDescription("You have executed a slash command that is not resolvable. Please contact the administrator.")
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+            return console.log(`Invalid Slash Command executed: ${commandFileName}`)
+        }
 
 
         if (command.permissions) {
