@@ -7,7 +7,11 @@ module.exports = {
         Success: "#25de1f"
     },
     Icons: {
-        music: "🎵 "
+        music: "🎵 ",
+        error: "❌ ",
+        success: "✅ ",
+        pause: "⏸️ ",
+        play: "▶️ "
     },
     Embeds: {
         footerText: "FireFly Bot"
