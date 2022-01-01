@@ -23,9 +23,14 @@ module.exports = async (client) => {
         if (!interaction.isCommand()) return;
 
         const commandName = interaction.commandName
-        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+        const subCommand = interaction.options._subcommand ? interaction.options.getSubcommand() : null
+        const commandFileName = subCommand ? `${commandName}_${subCommand}` : `${commandName}`
 
-        if (!command) return console.log(`Invalid Slash Command executed: ${commandName}`)
+
+        const command = client.commands.get(commandFileName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandFileName));
+
+
+        if (!command) return console.log(`Invalid Slash Command executed: ${commandFileName}`)
 
 
         if (command.permissions) {

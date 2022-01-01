@@ -1,10 +1,12 @@
 const { DisTube } = require("distube")
 const discordClient = require('../handlers/VariableHandler').client
-
+const { SpotifyPlugin } = require("@distube/spotify");
 
 discordClient.distube = new DisTube(discordClient, {
     leaveOnStop: false,
     emitNewSongOnly: true,
+    updateYouTubeDL: false,
+    plugins: [new SpotifyPlugin()],
 })
 
 
