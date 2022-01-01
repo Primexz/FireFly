@@ -3,12 +3,16 @@ const fs = require('fs')
 
 module.exports = async (client) => {
 
-    client.btnIntera = new Discord.Collection();
 
-    const btninteraction = fs.readdirSync('./buttons').filter(file => file.endsWith('.js'));
-    for (const file of btninteraction) {
-        const inti = require(`./buttons/${file}`);
-        client.btnIntera.set(inti.id, inti);
+    client.btnIntera = new Discord.Collection();
+    const commandFolders = fs.readdirSync('./buttons');
+    for (const folder of commandFolders) {
+        const commandFiles = fs.readdirSync(`./buttons/${folder}`).filter(file => file.endsWith('.js'));
+        for (const file of commandFiles) {
+            const command = require(`../buttons/${folder}/${file}`);
+            client.btnIntera.set(command.id, command);
+            console.log(`Loaded ${file} btn interaction!`)
+        }
     }
 
 
