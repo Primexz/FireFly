@@ -1,6 +1,8 @@
 const {DisTube} = require("distube")
 const discordClient = require('../handlers/VariableHandler').client
 const {SpotifyPlugin} = require("@distube/spotify");
+const Discord = require('discord.js')
+const utils = require('../modules/utils')
 
 discordClient.distube = new DisTube(discordClient, {
     leaveOnStop: false,
@@ -15,13 +17,24 @@ const status = queue =>
         queue.repeatMode ? (queue.repeatMode === 2 ? "All Queue" : "This Song") : "Off"
     }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``
 discordClient.distube
-    .on("playSong", (queue, song) =>
-        queue.textChannel.send(
-            `Playing \`${song.name}\` - \`${song.formattedDuration}\`\nRequested by: ${
-                song.user
-            }\n${status(queue)}`
-        )
+
+
+    .on("playSong", (queue, song) => {
+            queue.textChannel.send({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Default)
+                    .setTitle(`${utils.Icons.music} Playing Song`)
+                    .addField('Song', song.name)
+                    .addField("Duration", song.formattedDuration)
+                    .addField('Requested by', `${song.user}`)
+                    .addField('Status', status(queue))
+                    .setFooter("FireFly Bot", discordClient.user.displayAvatarURL({dynamic: true}))
+                    .setTimestamp(new Date())]
+            })
+        }
     )
+
+
     .on("addSong", (queue, song) =>
         queue.textChannel.send(
             `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`

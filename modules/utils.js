@@ -6,6 +6,9 @@ module.exports = {
         Error: "#f52c2c",
         Success: "#25de1f"
     },
+    Icons: {
+        music: "🎵 "
+    }
 
 
 }
