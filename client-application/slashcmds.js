@@ -14,7 +14,7 @@ module.exports = {
                     .addStringOption(option => option.setName('url').setDescription('YouTube, Spotify, SoundCloud URL, Search-Query of your song').setRequired(true)))
             .addSubcommand(subcommand =>
                 subcommand
-                    .setName('pause')
-                    .setDescription('Pause your current queue'))
+                    .setName('manager')
+                    .setDescription('Manage your current queue'))
     ]
 }
