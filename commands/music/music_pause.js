@@ -11,19 +11,7 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        const queue = client.distube.getQueue(interaction)
-        if (!queue)
-            return interaction.reply({
-                embeds: [new Discord.MessageEmbed()
-                    .setColor(utils.EmbedColors.Error)
-                    .setTitle(`${utils.Icons.error} Queue empty`)
-                    .setDescription("Your queue is currently empty!")
-                    .setFooter({
-                        text: utils.Embeds.footerText,
-                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
-                    })
-                    .setTimestamp(new Date())]
-            })
+        utils.musicQueueEmptyCheck(client, interaction)
 
 
         if (queue.paused) {

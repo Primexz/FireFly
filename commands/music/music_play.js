@@ -14,19 +14,7 @@ module.exports = {
         const songUrl = interaction.options.getString('url')
 
 
-        if (!interaction.member.voice.channel) {
-            return interaction.reply({
-                embeds: [new Discord.MessageEmbed()
-                    .setColor(utils.EmbedColors.Error)
-                    .setTitle(`${utils.Icons.error} No Voice`)
-                    .setDescription("You are not in a voice channel at the moment. Enter a VoiceChannel or StageChannel to play music.")
-                    .setFooter({
-                        text: utils.Embeds.footerText,
-                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
-                    })
-                    .setTimestamp(new Date())]
-            })
-        }
+        utils.usrNoVoice(interaction)
 
         client.distube.playVoiceChannel(interaction.member.voice.channel, songUrl, {
             textChannel: interaction.channel,
