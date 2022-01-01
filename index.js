@@ -21,5 +21,8 @@ require('./handlers/CommandHandler')(client)
 //Load distubeHandler
 require('./handlers/distubeHandler')
 
+//Load buttonHandler
+require('./handlers/buttonHandler')(client)
+
 //Login with Token from env Variable
 client.login(botToken)
