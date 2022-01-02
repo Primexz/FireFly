@@ -135,15 +135,15 @@ module.exports = {
                             .setEmoji("🔄")
                             .setStyle("PRIMARY"),
                         new Discord.MessageButton()
-                            .setCustomId("music-mng_refresh")
-                            .setLabel("Refresh")
-                            .setEmoji("🔃")
-                            .setStyle("PRIMARY"),
-                        new Discord.MessageButton()
                             .setCustomId("music-mng_autoplay")
                             .setLabel("Autoplay")
                             .setEmoji("⏏️")
-                            .setStyle(queue.autoplay ? "SUCCESS" : "DANGER")
+                            .setStyle(queue.autoplay ? "SUCCESS" : "DANGER"),
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_refresh")
+                            .setLabel("Refresh")
+                            .setEmoji("🔃")
+                            .setStyle("PRIMARY")
                     )
             ]
         })
