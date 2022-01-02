@@ -24,5 +24,8 @@ require('./handlers/distubeHandler')
 //Load buttonHandler
 require('./handlers/buttonHandler')(client)
 
+//Load selectMenuHandler
+require('./handlers/selectMenuHandler')(client)
+
 //Login with Token from env Variable
 client.login(botToken)

@@ -36,7 +36,7 @@ module.exports = {
                 new Discord.MessageActionRow()
                     .addComponents(
                         new Discord.MessageSelectMenu()
-                            .setCustomId('music_filter_select')
+                            .setCustomId('music-mng_filter')
                             .setPlaceholder('Select your music filter')
                             .setMinValues(0)
                             .setMaxValues(3)
