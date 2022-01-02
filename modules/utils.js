@@ -138,7 +138,12 @@ module.exports = {
                             .setCustomId("music-mng_refresh")
                             .setLabel("Refresh")
                             .setEmoji("🔃")
-                            .setStyle("PRIMARY")
+                            .setStyle("PRIMARY"),
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_autoplay")
+                            .setLabel("Autoplay")
+                            .setEmoji("⏏️")
+                            .setStyle(queue.autoplay ? "SUCCESS" : "DANGER")
                     )
             ]
         })
