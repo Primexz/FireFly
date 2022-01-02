@@ -116,6 +116,11 @@ module.exports = {
                             .setStyle('PRIMARY')
                             .setDisabled(queue.playing ? false : true),
                         new Discord.MessageButton()
+                            .setCustomId("music-mng_stop")
+                            .setLabel("Stop")
+                            .setEmoji("⏹")
+                            .setStyle("SECONDARY"),
+                        new Discord.MessageButton()
                             .setCustomId("music-mng_previous")
                             .setLabel("Previous")
                             .setEmoji("⬅️")
