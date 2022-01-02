@@ -22,6 +22,12 @@ module.exports = {
             member: interaction.member
         })
 
+        await interaction.reply({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Default)
+                .setTitle(`${utils.Icons.music} Loading Music-Player..`)
+        ]})
+
 
     },
 };

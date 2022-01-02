@@ -80,4 +80,16 @@ discordClient.distube
         console.error(e)
     })
     .on("empty", queue => queue.textChannel.send("Channel is empty. Leaving the channel"))
-    .on("finish", queue => queue.textChannel.send("Finished!"))
+    .on("finish", queue => {
+        queue.textChannel.send({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Error)
+                .setTitle(`${utils.Icons.music}${utils.Icons.error} Queue finished`)
+                .setDescription("Your current queue has been terminated because there are no more songs in the queue. Add more songs/playlists to continue playing music.")
+                .setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                })
+                .setTimestamp(new Date())]
+        })
+    })
