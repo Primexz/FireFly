@@ -11,10 +11,10 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        if(utils.usrNoVoice(interaction))
+        if (utils.usrNoVoice(interaction))
             return
 
-        if(utils.musicQueueEmptyCheck(client, interaction))
+        if (utils.musicQueueEmptyCheck(client, interaction))
             return
 
         const queue = client.distube.getQueue(interaction)
@@ -56,8 +56,20 @@ module.exports = {
                         .setLabel('Pause')
                         .setEmoji('⏸')
                         .setStyle('PRIMARY')
-                        .setDisabled(queue.playing ? false : true)
+                        .setDisabled(queue.playing ? false : true),
+                    new Discord.MessageButton()
+                        .setCustomId("music-mng_previous")
+                        .setLabel("Previous")
+                        .setEmoji("⬅️")
+                        .setStyle("PRIMARY"),
+
+                    new Discord.MessageButton()
+                        .setCustomId("music-mng_skip")
+                        .setLabel("Skip")
+                        .setEmoji("➡️")
+                        .setStyle("PRIMARY")
                 )
+
             ]
         })
 
