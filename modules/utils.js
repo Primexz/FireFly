@@ -23,8 +23,8 @@ module.exports = {
     musicQueueEmptyCheck: function (client, interaction) {
         const queue = client.distube.getQueue(interaction)
 
-        if (!queue)
-            return interaction.reply({
+        if (!queue) {
+            interaction.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(this.EmbedColors.Error)
                     .setTitle(`${this.Icons.error} Queue empty`)
@@ -35,11 +35,13 @@ module.exports = {
                     })
                     .setTimestamp(new Date())]
             })
+            return true;
+        }
     },
 
     usrNoVoice: function (interaction) {
         if (!interaction.member.voice.channel) {
-            return interaction.reply({
+            interaction.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(this.EmbedColors.Error)
                     .setTitle(`${this.Icons.error} No Voice`)
@@ -50,6 +52,7 @@ module.exports = {
                     })
                     .setTimestamp(new Date())]
             })
+            return true
         }
     },
 

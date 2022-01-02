@@ -11,8 +11,11 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        utils.usrNoVoice(interaction);
-        utils.musicQueueEmptyCheck(client, interaction)
+        if(utils.usrNoVoice(interaction))
+            return;
+
+        if(utils.musicQueueEmptyCheck(client, interaction))
+            return;
 
         const queue = client.distube.getQueue(interaction)
 
