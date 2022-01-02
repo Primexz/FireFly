@@ -11,15 +11,15 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        if(utils.usrNoVoice(interaction))
+        if (utils.usrNoVoice(interaction))
             return;
 
-        if(utils.musicQueueEmptyCheck(client, interaction))
+        if (utils.musicQueueEmptyCheck(client, interaction))
             return;
 
         const queue = client.distube.getQueue(interaction)
 
-        if(queue.songs.length <= 1)
+        if (queue.songs.length <= 1)
             return interaction.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Error)
@@ -33,10 +33,11 @@ module.exports = {
             })
 
 
-            utils.updateMusicMng(interaction,client);
-            client.distube.skip(interaction)
+        await client.distube.skip(interaction)
 
-            interaction.deferUpdate()
+        utils.updateMusicMng(interaction, client);
+
+        interaction.deferUpdate()
 
 
     },

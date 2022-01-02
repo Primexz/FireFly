@@ -39,17 +39,40 @@ discordClient.distube
     )
 
 
-    .on("addSong", (queue, song) =>
-        queue.textChannel.send(
-            `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
-        )
+    .on("addSong", (queue, song) => {
+            queue.textChannel.send({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Success)
+                    .setTitle(`${utils.Icons.music} Added song`)
+                    .addField('Song', song.name)
+                    .addField("Duration", song.formattedDuration)
+                    .addField('Requested by', `${song.user}`)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+        }
     )
-    .on("addList", (queue, playlist) =>
-        queue.textChannel.send(
-            `Added \`${playlist.name}\` playlist (${
-                playlist.songs.length
-            } songs) to queue\n${status(queue)}`
-        )
+    .on("addList", (queue, playlist) => {
+
+            queue.textChannel.send({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Default)
+                    .setTitle(`${utils.Icons.music} Added playlist`)
+                    .addField('Playlist', playlist.name)
+                    .addField("Songs", utils.formatInt(playlist.songs.length))
+                    .addField("Duration", playlist.formattedDuration)
+                    .addField('Requested by', `${playlist.user}`)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+
+        }
     )
     .on("searchNoResult", (message, query) => message.channel.send("No result found for: " + query))
     .on("error", (channel, e) => {
