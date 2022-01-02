@@ -7,7 +7,7 @@ const Permissions = Discord.Permissions.FLAGS
 
 module.exports = {
 
-    id: 'music-mng_play',
+    id: 'music-mng_pause',
 
     async execute(client, interaction) {
 
@@ -16,14 +16,14 @@ module.exports = {
 
         const queue = client.distube.getQueue(interaction)
 
-        if (queue.paused) {
-            queue.resume()
+        if (!queue.paused) {
+            queue.pause()
 
             interaction.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Success)
-                    .setTitle(`${utils.Icons.play} Resumed`)
-                    .setDescription("Successfully resumed current queue!")
+                    .setTitle(`${utils.Icons.play} Paused`)
+                    .setDescription("Successfully paused current queue!")
                     .setFooter({
                         text: utils.Embeds.footerText,
                         iconURL: discordClient.user.displayAvatarURL({dynamic: true})
@@ -38,7 +38,7 @@ module.exports = {
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Error)
                     .setTitle(`${utils.Icons.error} Not Paused`)
-                    .setDescription("The music was not stopped, so it cannot be continued.")
+                    .setDescription("The music was not started, so it cannot be continued.")
                     .setFooter({
                         text: utils.Embeds.footerText,
                         iconURL: discordClient.user.displayAvatarURL({dynamic: true})

@@ -18,7 +18,6 @@ module.exports = {
         const currentSong = queue.songs[0]
 
 
-
         interaction.reply({
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
@@ -47,12 +46,14 @@ module.exports = {
                         .setCustomId('music-mng_play')
                         .setLabel('Play')
                         .setEmoji('▶️')
-                        .setStyle('PRIMARY'),
+                        .setStyle('PRIMARY')
+                        .setDisabled(queue.playing),
                     new Discord.MessageButton()
                         .setCustomId('music-mng_pause')
                         .setLabel('Pause')
                         .setEmoji('⏸')
                         .setStyle('PRIMARY')
+                        .setDisabled(queue.playing ? false : true)
                 )
             ]
         })
