@@ -16,5 +16,10 @@ module.exports = {
                 subcommand
                     .setName('manager')
                     .setDescription('Manage your current queue'))
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName("filter")
+                    .setDescription("Manage all music filters/effects")
+            )
     ]
 }
