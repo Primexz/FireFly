@@ -34,7 +34,7 @@ module.exports = {
                 .addField("Duration", currentSong.formattedDuration, true)
                 .addField("Queue", `${queue.songs.length <= 1 ? "1 song" : `${queue.songs.length} songs`} - ${queue.formattedDuration}`, true)
                 .addField("Volume", `${queue.volume}%`, true)
-                .addField("Loop", queue.repeatMode ? (queue.repeatMode === 2 ? "All Queue" : "This Song") : "❌", true)
+                .addField("Loop", queue.repeatMode ? (queue.repeatMode === 2 ? "Queue" : "Song") : "❌", true)
                 .addField("Autoplay", `${queue.autoplay ? "✅" : "❌"}`, true)
                 .addField("Bitrate", `${queue.voiceChannel.bitrate / 1000} kbps`)
                 .addField("Filter", queue.filters.join(", ") || "❌", true)
@@ -43,32 +43,42 @@ module.exports = {
                     iconURL: client.user.displayAvatarURL({dynamic: true})
                 })
                 .setTimestamp(new Date())],
-            components: [new Discord.MessageActionRow()
-                .addComponents(
-                    new Discord.MessageButton()
-                        .setCustomId('music-mng_play')
-                        .setLabel('Play')
-                        .setEmoji('▶️')
-                        .setStyle('PRIMARY')
-                        .setDisabled(queue.playing),
-                    new Discord.MessageButton()
-                        .setCustomId('music-mng_pause')
-                        .setLabel('Pause')
-                        .setEmoji('⏸')
-                        .setStyle('PRIMARY')
-                        .setDisabled(queue.playing ? false : true),
-                    new Discord.MessageButton()
-                        .setCustomId("music-mng_previous")
-                        .setLabel("Previous")
-                        .setEmoji("⬅️")
-                        .setStyle("PRIMARY"),
+            components: [
+                new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setCustomId('music-mng_play')
+                            .setLabel('Play')
+                            .setEmoji('▶️')
+                            .setStyle('PRIMARY')
+                            .setDisabled(queue.playing),
+                        new Discord.MessageButton()
+                            .setCustomId('music-mng_pause')
+                            .setLabel('Pause')
+                            .setEmoji('⏸')
+                            .setStyle('PRIMARY')
+                            .setDisabled(queue.playing ? false : true),
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_previous")
+                            .setLabel("Previous")
+                            .setEmoji("⬅️")
+                            .setStyle("PRIMARY"),
 
-                    new Discord.MessageButton()
-                        .setCustomId("music-mng_skip")
-                        .setLabel("Skip")
-                        .setEmoji("➡️")
-                        .setStyle("PRIMARY")
-                )
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_skip")
+                            .setLabel("Skip")
+                            .setEmoji("➡️")
+                            .setStyle("PRIMARY")
+                    ),
+                new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_repeat")
+                            .setLabel("Repeat")
+                            .setEmoji("🔄")
+                            .setStyle("PRIMARY")
+                    )
+
 
             ]
         })
