@@ -4,13 +4,13 @@ const fs = require('fs')
 module.exports = async (client) => {
 
 
-    client.btnIntera = new Discord.Collection();
+    client.selectIntera = new Discord.Collection();
     const commandFolders = fs.readdirSync('./selects');
     for (const folder of commandFolders) {
         const commandFiles = fs.readdirSync(`./selects/${folder}`).filter(file => file.endsWith('.js'));
         for (const file of commandFiles) {
             const command = require(`../selects/${folder}/${file}`);
-            client.btnIntera.set(command.id, command);
+            client.selectIntera.set(command.id, command);
             console.log(`Loaded ${file} select interaction!`)
         }
     }
@@ -23,8 +23,8 @@ module.exports = async (client) => {
 
 
         const interactionID = interaction.customId
-        const command = client.btnIntera.get(interactionID)
-            || client.btnIntera.find(cmd => cmd.aliases && cmd.aliases.includes(interactionID));
+        const command = client.selectIntera.get(interactionID)
+            || client.selectIntera.find(cmd => cmd.aliases && cmd.aliases.includes(interactionID));
         if (!command)
             return console.log(`Invalid Select Interaction found: ${interactionID}`)
 
