@@ -134,6 +134,14 @@ module.exports = {
                             .setLabel("Repeat")
                             .setEmoji("🔄")
                             .setStyle("PRIMARY")
+                    ),
+                new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_refresh")
+                            .setLabel("Refresh")
+                            .setEmoji("↩️")
+                            .setStyle("PRIMARY/")
                     )
             ]
         })

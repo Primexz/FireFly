@@ -76,6 +76,11 @@ module.exports = {
                             .setCustomId("music-mng_repeat")
                             .setLabel("Repeat")
                             .setEmoji("🔄")
+                            .setStyle("PRIMARY"),
+                        new Discord.MessageButton()
+                            .setCustomId("music-mng_refresh")
+                            .setLabel("Refresh")
+                            .setEmoji("🔃")
                             .setStyle("PRIMARY")
                     )
 
