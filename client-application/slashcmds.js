@@ -3,7 +3,6 @@ const {SlashCommandBuilder} = require('@discordjs/builders');
 module.exports = {
     slashCmdData: [
         new SlashCommandBuilder().setName('avatar').setDescription('Get avatar image & url from an user'),
-        new SlashCommandBuilder().setName('pause').setDescription('Pause current song on your guild'),
         new SlashCommandBuilder()
             .setName('music')
             .setDescription('Manage all music features of FireFly')
