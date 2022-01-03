@@ -45,91 +45,106 @@ module.exports = {
                                     label: '3D',
                                     description: 'Enable/Disable the 3D Sound Filter',
                                     value: '3d',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("3d")
                                 },
                                 {
                                     label: 'Bass Boost',
                                     description: 'Enable/Disable the Bassboost Sound Filter',
                                     value: 'bassboost',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("bassboost")
                                 },
                                 {
                                     label: 'Echo',
                                     description: 'Enable/Disable the Echo Sound Filter',
                                     value: 'echo',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("echo")
                                 },
                                 {
                                     label: 'Karaoke',
                                     description: 'Enable/Disable the Karaoke Sound Filter',
                                     value: 'karaoke',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("karaoke")
                                 },
                                 {
                                     label: 'Nightcore',
                                     description: 'Enable/Disable the Nightcore Sound Filter',
                                     value: 'nightcore',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("nightcore")
                                 },
                                 {
                                     label: 'Vaporwave',
                                     description: 'Enable/Disable the Vaporwave Sound Filter',
                                     value: 'vaporwave',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("vaporwave")
                                 },
                                 {
                                     label: 'Flanger',
                                     description: 'Enable/Disable the Flanger Sound Filter',
                                     value: 'flanger',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("flanger")
                                 },
                                 {
                                     label: 'Gate',
                                     description: 'Enable/Disable the Gate Sound Filter',
                                     value: 'gate',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("gate")
                                 },
                                 {
                                     label: 'Haas',
                                     description: 'Enable/Disable the Haas Sound Filter',
                                     value: 'haas',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("haas")
                                 },
                                 {
                                     label: 'Reverse',
                                     description: 'Enable/Disable the Reverse Sound Filter',
                                     value: 'reverse',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("reverse")
                                 },
                                 {
                                     label: 'Surround',
                                     description: 'Enable/Disable the Surround Sound Filter',
                                     value: 'surround',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("surround")
                                 },
                                 {
                                     label: 'Mcompand',
                                     description: 'Enable/Disable the Mcompand Sound Filter',
                                     value: 'mcompand',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("mcompand")
                                 },
                                 {
                                     label: 'Phaser',
                                     description: 'Enable/Disable the Phaser Sound Filter',
                                     value: 'phaser',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("phaser")
                                 },
                                 {
                                     label: 'Tremolo',
                                     description: 'Enable/Disable the Tremolo Sound Filter',
                                     value: 'tremolo',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("tremolo")
                                 },
                                 {
                                     label: 'Earwax',
                                     description: 'Enable/Disable the Earwax Sound Filter',
                                     value: 'earwax',
-                                    emoji: '🎵'
+                                    emoji: '🎵',
+                                    default: queue.filters.includes("earwax")
                                 },
                             ]),
                     ),
