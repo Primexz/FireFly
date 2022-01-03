@@ -48,15 +48,9 @@ module.exports = {
                                     emoji: '🎵'
                                 },
                                 {
-                                    label: 'Bassboost',
+                                    label: 'Bass Boost',
                                     description: 'Enable/Disable the Bassboost Sound Filter',
                                     value: 'bassboost',
-                                    emoji: '🎵'
-                                },
-                                {
-                                    label: 'Bassboost2',
-                                    description: 'Enable/Disable the Bassboost Sound Filter',
-                                    value: 'bassboost2',
                                     emoji: '🎵'
                                 },
                                 {
@@ -141,7 +135,6 @@ module.exports = {
                     ),
             ]
         })
-
 
     },
 };
