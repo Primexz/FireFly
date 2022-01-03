@@ -6,7 +6,8 @@ const utils = require('../modules/utils')
 const {SoundCloudPlugin} = require("@distube/soundcloud");
 
 discordClient.distube = new DisTube(discordClient, {
-    leaveOnStop: false,
+    leaveOnStop: true,
+    leaveOnEmpty: true,
     emitNewSongOnly: true,
     updateYouTubeDL: false,
     plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
