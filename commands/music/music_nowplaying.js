@@ -6,7 +6,7 @@ const Permissions = Discord.Permissions.FLAGS
 
 module.exports = {
 
-    name: 'music_filter',
+    name: 'music_nowplaying',
     permissions: [],
 
     async execute(client, interaction) {
@@ -26,6 +26,10 @@ module.exports = {
                 .setColor(utils.EmbedColors.Default)
                 .setTitle(`${utils.Icons.music} Now Playing`)
                 .setThumbnail(currentSong.thumbnail)
+                .addField("Song Name", currentSong.name)
+                .addField("Duration", currentSong.formattedDuration)
+                .addField("Artist", currentSong.uploader.name)
+                .addField("URL", currentSong.url)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
