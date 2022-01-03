@@ -19,7 +19,10 @@ module.exports = {
             .addSubcommand(subcommand =>
                 subcommand
                     .setName("filter")
-                    .setDescription("Manage all music filters/effects")
-            )
+                    .setDescription("Manage all music filters/effects"))
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName("nowplaying")
+                    .setDescription("Get information about the song that is currently playing."))
     ]
 }
