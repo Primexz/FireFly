@@ -76,7 +76,17 @@ discordClient.distube
     )
     .on("searchNoResult", (message, query) => message.channel.send("No result found for: " + query))
     .on("error", (channel, e) => {
-        channel.send(`An error encountered: ${e.toString().slice(0, 1974)}`)
+        channel.send({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Error)
+                .setTitle(`${utils.Icons.error} An error occurred`)
+                .setDescription(`\`\`\`${e.toString().slice(0, 1974)}\`\`\``)
+                .setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                })
+                .setTimestamp(new Date())]
+        })
         console.error(e)
     })
     .on("empty", queue => queue.textChannel.send("Channel is empty. Leaving the channel"))
