@@ -23,5 +23,11 @@ module.exports = {
                 subcommand
                     .setName("nowplaying")
                     .setDescription("Get information about the song that is currently playing."))
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName("volume")
+                    .setDescription("Set the volume of the current song in percent")
+                    .addIntegerOption(option => option.setName("percent").setDescription("Your new volume in percent").setRequired(true))
+            )
     ]
 }
