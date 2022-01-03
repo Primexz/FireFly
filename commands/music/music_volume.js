@@ -19,7 +19,26 @@ module.exports = {
 
         const queue = client.distube.getQueue(interaction)
         const currentSong = queue.songs[0]
+        const oldVolume = queue.volume
+        const newVolume = interaction.options.getInteger('percent')
 
+        queue.setVolume(newVolume)
+
+        interaction.reply({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Default)
+                .setTitle(`${utils.Icons.music} Volume Change`)
+                .setDescription("The volume of the current queue has been changed.")
+                .setThumbnail(currentSong.thumbnail)
+                .addField("Old Volume", `${oldVolume}%`)
+                .addField("New Volume", `${newVolume}%`)
+                .addField("Requested by", `<@${interaction.user.id}>`)
+                .setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: client.user.displayAvatarURL({dynamic: true})
+                })
+                .setTimestamp(new Date())],
+        })
 
 
 
