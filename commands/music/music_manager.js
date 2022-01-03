@@ -25,7 +25,7 @@ module.exports = {
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
                 .setTitle(`${utils.Icons.music} Music Manager`)
-                .setDescription(`[${currentSong.name}](${currentSong.url})`)
+                .setDescription(`Here you can make all the important settings to the music. For more settings have a look at the subcommands of /music.\n[${currentSong.name}](${currentSong.url})`)
                 .setThumbnail(currentSong.thumbnail)
                 .addField(":eye: Views", utils.formatInt(currentSong.views), true)
                 .addField("👍 Likes", utils.formatInt(currentSong.likes), true)
