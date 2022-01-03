@@ -89,7 +89,19 @@ discordClient.distube
         })
         console.error(e)
     })
-    .on("empty", queue => queue.textChannel.send("Channel is empty. Leaving the channel"))
+    .on("empty", queue => {
+        queue.textChannel.send({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Error)
+                .setTitle(`${utils.Icons.music}${utils.Icons.error} Empty Channel`)
+                .setDescription("It looks like the channel I am currently in has no more users. Since I don't want to play music alone, I will leave the channel now. :=)")
+                .setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                })
+                .setTimestamp(new Date())]
+        })
+    })
     .on("finish", queue => {
         queue.textChannel.send({
             embeds: [new Discord.MessageEmbed()
