@@ -17,7 +17,7 @@ module.exports = {
         if(utils.usrNoVoice(interaction))
             return
 
-        client.distube.playVoiceChannel(interaction.member.voice.channel, songUrl, {
+        await client.distube.playVoiceChannel(interaction.member.voice.channel, songUrl, {
             textChannel: interaction.channel,
             member: interaction.member
         })
