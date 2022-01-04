@@ -14,8 +14,10 @@ module.exports = {
         const ping = client.ws.ping
         const streams = `${client.distube.listenerCount()} / ${client.distube.getMaxListeners()}`
         const shards = client.options.shardCount
+        const guilds = client.guilds.cache.size
+        const userCount = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)
 
-        console.log(ping)
+
 
 
 
