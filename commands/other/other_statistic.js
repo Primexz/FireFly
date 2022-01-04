@@ -11,6 +11,12 @@ module.exports = {
 
     async execute(client, interaction) {
 
+        const ping = client.ws.ping
+        const streams = `${client.distube.listenerCount()} / ${client.distube.getMaxListeners()}`
+        const shards = client.options.shardCount
+
+        console.log(ping)
+
 
 
 
