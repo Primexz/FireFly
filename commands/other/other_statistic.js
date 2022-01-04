@@ -3,6 +3,8 @@ const util = require("util");
 const utils = require("../../modules/utils");
 const discordClient = require("../../handlers/VariableHandler").client;
 const Permissions = Discord.Permissions.FLAGS
+const os = require('os')
+
 
 module.exports = {
 
@@ -17,8 +19,11 @@ module.exports = {
         const guilds = client.guilds.cache.size
         const userCount = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)
         const uptime = utils.formatTimestamp(client.uptime)
-
-
+        const cpuCount = os.cpus().length
+        const cpuModel = os.cpus()[0].model
+        const usedMemory = os.freemem() / (1024 * 1024 * 1024)
+        const totalMemory = os.totalmem() / (1024 * 1024 * 1024)
+        const memoryPercent = `${((os.freemem() / os.totalmem()) * 100).toFixed(2)}%`
 
 
     },

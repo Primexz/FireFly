@@ -166,11 +166,11 @@ module.exports = {
         if (days > 0)
             total.push(~~days + " days");
         if (hours > 0)
-            total.push(~~hours + " hrs")
+            total.push(~~hours + " hours")
         if (minutes > 0)
-            total.push(~~minutes + " mins")
+            total.push(~~minutes + " minutes")
         if (secs > 0)
-            total.push(~~secs + " secs")
+            total.push(~~secs + " seconds")
         if ([~~days, ~~hours, ~~minutes, ~~secs].every(time => time == 0)) total.push("0 secs");
         return total.join(", ");
     },
