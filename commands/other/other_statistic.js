@@ -16,9 +16,7 @@ module.exports = {
         const shards = client.options.shardCount
         const guilds = client.guilds.cache.size
         const userCount = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)
-
-
-
+        const uptime = utils.formatTimestamp(client.uptime)
 
 
 

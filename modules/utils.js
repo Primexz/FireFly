@@ -152,7 +152,28 @@ module.exports = {
                     )
             ]
         })
-    }
+    },
+    formatTimestamp: function (ms) {
+        let secs = ms / 1000
+        const days = ~~(secs / 86400);
+        secs -= days * 86400;
+        const hours = ~~(secs / 3600);
+        secs -= hours * 3600;
+        const minutes = ~~(secs / 60);
+        secs -= minutes * 60;
+        let total = [];
+
+        if (days > 0)
+            total.push(~~days + " days");
+        if (hours > 0)
+            total.push(~~hours + " hrs")
+        if (minutes > 0)
+            total.push(~~minutes + " mins")
+        if (secs > 0)
+            total.push(~~secs + " secs")
+        if ([~~days, ~~hours, ~~minutes, ~~secs].every(time => time == 0)) total.push("0 secs");
+        return total.join(", ");
+    },
 
 
 }
