@@ -4,7 +4,7 @@ const utils = require("../../modules/utils");
 const discordClient = require("../../handlers/VariableHandler").client;
 const Permissions = Discord.Permissions.FLAGS
 const os = require('os')
-const { version } = require('../../package.json');
+const {version} = require('../../package.json');
 const discordJs = require('../../package.json').dependencies["discord.js"]
 
 module.exports = {
@@ -30,24 +30,22 @@ module.exports = {
         await interaction.reply("Collecting information..")
         const time2 = new Date()
 
-        const responseTime = time2-time1
+        const responseTime = time2 - time1
 
         await interaction.editReply({
             content: null,
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
-                .setTitle(`FireFly Statistics`)
+                .setTitle(`${utils.Icons.fire} FireFly Statistics`)
                 .addField("Version", `\`\`\`FireFly:    ${version}\nDiscord.js: ${discordJs}\`\`\``, true)
                 .addField("CPU Info", `\`\`\`${cpuCount} cores\n${cpuModel}\`\`\``, true)
                 .addField("Memory Usage", `\`\`\`${usedMemory.toFixed(2)} / ${totalMemory.toFixed(2)} GB\n${memoryPercent}\`\`\``, true)
                 .addField("Uptime", `\`\`\`${uptime}\`\`\``)
-                .addField("Websocket Ping", `\`\`\`${ping}ms\`\`\``, true)
-                .addField("Response Ping", `\`\`\`${responseTime}ms\`\`\``, true)
+                .addField("Websocket Ping", `\`\`\`${utils.formatInt(ping)}ms\`\`\``, true)
+                .addField("Response Ping", `\`\`\`${utils.formatInt(responseTime)}ms\`\`\``, true)
                 .addField("Voice Streams", `\`\`\`${voiceStreams}\`\`\``, true)
-
-
-                .addField("User", `\`\`\`${userCount}\`\`\``, true)
-                .addField("Server", `\`\`\`${guilds}\`\`\``, true)
+                .addField("User", `\`\`\`${utils.formatInt(userCount)}\`\`\``, true)
+                .addField("Server", `\`\`\`${utils.formatInt(guilds)}\`\`\``, true)
                 .addField("Shards", `\`\`\`${shards}\`\`\``, true)
 
                 .setFooter({

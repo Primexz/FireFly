@@ -14,7 +14,8 @@ module.exports = {
         error: "❌ ",
         success: "✅ ",
         pause: "⏸️ ",
-        play: "▶️ "
+        play: "▶️ ",
+        fire: "🔥 "
     },
     Embeds: {
         footerText: "FireFly Bot"
