@@ -1,4 +1,5 @@
 {
+  "name": "FireFly Bot",
   "dependencies": {
     "@discordjs/builders": "^0.11.0",
     "@discordjs/opus": "github:discordjs/opus",
@@ -17,5 +18,8 @@
     "nodemon": "^2.0.15",
     "sodium": "^3.0.2",
     "utf-8-validate": "^5.0.7"
+  },
+  "scripts": {
+    "Dev-FireFly": "nodemon"
   }
 }
