@@ -26,5 +26,21 @@ module.exports = {
         const memoryPercent = `${((os.freemem() / os.totalmem()) * 100).toFixed(2)}%`
 
 
+        interaction.reply({
+            embeds: [new Discord.MessageEmbed()
+                .setColor(utils.EmbedColors.Default)
+                .setTitle(`FireFly Statistics`)
+                .addField("CPU Info", `\`\`\`${cpuCount} cores\n${cpuModel}\`\`\``, true)
+                .addField("Memory Usage", `\`\`\`${usedMemory.toFixed(2)} / ${totalMemory.toFixed(2)} GB\n${memoryPercent}\`\`\``, true)
+                .addField("Uptime", `\`\`\`${uptime}\`\`\``)
+
+                .setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: client.user.displayAvatarURL({dynamic: true})
+                })
+                .setTimestamp(new Date())],
+        })
+
+
     },
 };
