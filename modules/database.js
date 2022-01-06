@@ -21,5 +21,8 @@ module.exports = {
         addCommand: async function () {
             await db.prepare("UPDATE statistic SET commands = statistic.commands + 1").run()
         },
+        addButton: async function () {
+            await db.prepare("UPDATE statistic SET buttons = statistic.buttons + 1").run()
+        }
     }
 }

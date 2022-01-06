@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const fs = require('fs')
+const db = require('../modules/database')
 
 module.exports = async (client) => {
 
@@ -21,6 +22,7 @@ module.exports = async (client) => {
     client.on('interactionCreate', async interaction => {
         if (!interaction.isButton()) return;
 
+        await db.stats.addButton()
 
         const interactionID = interaction.customId
         const command = client.btnIntera.get(interactionID)
