@@ -2,6 +2,8 @@ const Discord = require('discord.js')
 const fs = require('fs')
 const utils = require("../modules/utils");
 const discordClient = require("../handlers/VariableHandler").client;
+const db = require('../modules/database')
+
 module.exports = async (client) => {
 
     console.log("Loading Commands..")
@@ -23,6 +25,8 @@ module.exports = async (client) => {
     client.on('interactionCreate', async interaction => {
 
         if (!interaction.isCommand()) return;
+
+        await db.stats.addCommand()
 
         const commandName = interaction.commandName
         const subCommand = interaction.options._subcommand ? interaction.options.getSubcommand() : null
