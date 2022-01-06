@@ -13,7 +13,9 @@ module.exports = {
             if(!statEntry)
                 db.prepare("INSERT INTO statistic(commands, songs, buttons) VALUES (?, ?, ?)").run(0, 0 ,0)
 
-
+        },
+        getStats: async function () {
+            return await db.prepare("SELECT * FROM statistic").get()
         },
         addSong: async function () {
             await db.prepare("UPDATE statistic SET songs = statistic.songs + 1").run()

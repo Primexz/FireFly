@@ -6,6 +6,8 @@ const Permissions = Discord.Permissions.FLAGS
 const os = require('os')
 const {version} = require('../../package.json');
 const discordJs = require('../../package.json').dependencies["discord.js"]
+const db = require("../../modules/database")
+
 
 module.exports = {
 
@@ -33,6 +35,10 @@ module.exports = {
         const responseTime = time2 - time1
         const memoryEmoji = memoryPercent < 50 ? ":green_circle:" : (memoryPercent < 90 ? ":yellow_circle:" : ":red_circle:");
 
+        const currentDB = await db.stats.getStats()
+
+
+
         await interaction.editReply({
             content: null,
             embeds: [new Discord.MessageEmbed()
@@ -49,6 +55,9 @@ module.exports = {
                 .addField("📁 Server", `\`\`\`${utils.formatInt(guilds)}\`\`\``, true)
                 .addField("🌐 Shards", `\`\`\`${shards}\`\`\``, true)
 
+                .addField("🌐 Commands Used", `\`\`\`${currentDB.commands}\`\`\``, true)
+                .addField("🌐 Songs played", `\`\`\`${currentDB.songs}\`\`\``, true)
+                .addField("🌐 Buttons clicked", `\`\`\`${currentDB.buttons}\`\`\``, true)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
