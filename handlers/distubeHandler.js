@@ -4,6 +4,7 @@ const {SpotifyPlugin} = require("@distube/spotify");
 const Discord = require('discord.js')
 const utils = require('../modules/utils')
 const {SoundCloudPlugin} = require("@distube/soundcloud");
+const db = require('../modules/database')
 
 discordClient.distube = new DisTube(discordClient, {
     leaveOnStop: true,
@@ -22,6 +23,7 @@ discordClient.distube
 
 
     .on("playSong", (queue, song) => {
+            db.stats.addSong();
             queue.textChannel.send({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Default)
