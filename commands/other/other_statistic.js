@@ -55,9 +55,9 @@ module.exports = {
                 .addField("📁 Server", `\`\`\`${utils.formatInt(guilds)}\`\`\``, true)
                 .addField("🌐 Shards", `\`\`\`${shards}\`\`\``, true)
 
-                .addField("🌐 Commands Used", `\`\`\`${currentDB.commands}\`\`\``, true)
-                .addField("🌐 Songs played", `\`\`\`${currentDB.songs}\`\`\``, true)
-                .addField("🌐 Buttons clicked", `\`\`\`${currentDB.buttons}\`\`\``, true)
+                .addField("⌨️ Commands Used", `\`\`\`${currentDB.commands}\`\`\``, true)
+                .addField("🎵 Songs played", `\`\`\`${currentDB.songs}\`\`\``, true)
+                .addField("🖱️ Buttons clicked", `\`\`\`${currentDB.buttons}\`\`\``, true)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})

@@ -2,7 +2,7 @@ const {SlashCommandBuilder} = require('@discordjs/builders');
 
 module.exports = {
     slashCmdData: [
-        new SlashCommandBuilder().setName('avatar').setDescription('Get avatar image & url from an user'),
+        new SlashCommandBuilder().setName('avatar').setDescription('Get avatar image & url from an user').addUserOption(option => option.setName("user").setDescription("User The user you want to get the avatar from").setRequired(true)),
         new SlashCommandBuilder().setName('stats').setDescription('Get statistics about FireFly'),
         new SlashCommandBuilder()
             .setName('music')
