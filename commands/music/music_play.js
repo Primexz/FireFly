@@ -14,19 +14,33 @@ module.exports = {
         const songUrl = interaction.options.getString('url')
 
 
-        if(utils.usrNoVoice(interaction))
+        if (utils.usrNoVoice(interaction))
             return
 
-        await client.distube.playVoiceChannel(interaction.member.voice.channel, songUrl, {
-            textChannel: interaction.channel,
-            member: interaction.member
-        })
 
-        await interaction.reply({
+        var a;
+
+        await interaction.deferReply();
+
+        const {skip, unshift} = Object.assign({skip: false, unshift: false});
+
+        const textChannel = interaction.channel;
+        const member = interaction.member;
+        const voiceChannel = interaction.member.voice.channel;
+        await client.distube.playVoiceChannel(voiceChannel, songUrl, {
+            member,
+            textChannel,
+            skip,
+            a,
+            unshift
+        });
+
+        await interaction.editReply({
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
                 .setTitle(`${utils.Icons.music} Loading Music-Player..`)
-        ]})
+            ]
+        })
 
 
     },
