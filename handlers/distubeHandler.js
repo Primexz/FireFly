@@ -1,4 +1,4 @@
-const {DisTube} = require("distube")
+const {DisTube} = require("../distube")
 const discordClient = require('../handlers/VariableHandler').client
 const {SpotifyPlugin} = require("@distube/spotify");
 const Discord = require('discord.js')

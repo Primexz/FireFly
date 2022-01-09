@@ -18,22 +18,10 @@ module.exports = {
             return
 
 
-        var a;
 
-        await interaction.deferReply();
+        await interaction.deferReply()
 
-        const {skip, unshift} = Object.assign({skip: false, unshift: false});
-
-        const textChannel = interaction.channel;
-        const member = interaction.member;
-        const voiceChannel = interaction.member.voice.channel;
-        await client.distube.playVoiceChannel(voiceChannel, songUrl, {
-            member,
-            textChannel,
-            skip,
-            a,
-            unshift
-        });
+        await discordClient.distube.play(interaction, songUrl)
 
         await interaction.editReply({
             embeds: [new Discord.MessageEmbed()
