@@ -12,15 +12,14 @@
     "discord.js": "^13.5.0",
     "distube": "^3.0.5",
     "dotenv": "^10.0.0",
-    "ffmpeg-static": "^4.4.0",
     "libsodium-wrappers": "^0.7.9",
     "node-gyp": "^8.4.1",
     "node-pre-gyp": "^0.17.0",
     "nodemon": "^2.0.15",
-    "sodium": "^3.0.2",
+    "pm2": "^5.1.2",
     "utf-8-validate": "^5.0.7"
   },
   "scripts": {
     "Dev-FireFly": "nodemon"
   }
-}
+},
