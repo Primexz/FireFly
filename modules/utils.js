@@ -176,5 +176,21 @@ module.exports = {
         return total.join(", ");
     },
 
-
+    getEmoji: function (number) {
+        if (number == 1) return "\u0031\u20E3";
+        if (number == 2) return "\u0032\u20E3";
+        if (number == 3) return "\u0033\u20E3";
+        if (number == 4) return "\u0034\u20E3";
+        if (number == 5) return "\u0035\u20E3";
+        if (number == 6) return "\u0036\u20E3";
+        if (number == 7) return "\u0037\u20E3";
+        if (number == 8) return "\u0038\u20E3";
+        if (number == 9) return "\u0039\u20E3";
+        if (number == 10) return "\uD83D\uDD1F";
+    },
+    asyncForEach: async function asyncForEach(array, callback) {
+        for (let index = 0; index < array.length; index++) {
+            await callback(array[index], index, array);
+        }
+    },
 }

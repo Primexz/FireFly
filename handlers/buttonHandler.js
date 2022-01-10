@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const fs = require('fs')
 const db = require('../modules/database')
+const utils = require('../modules/utils')
 
 module.exports = async (client) => {
 
@@ -18,11 +19,17 @@ module.exports = async (client) => {
 
 
 
+    const tttInteractions = ["accept_tictactoe", "deny_tictactoe", utils.getEmoji(1), utils.getEmoji(2), utils.getEmoji(3), utils.getEmoji(4), utils.getEmoji(5), utils.getEmoji(6), utils.getEmoji(7), utils.getEmoji(8), utils.getEmoji(9),]
+
     //Button Interactions
     client.on('interactionCreate', async interaction => {
         if (!interaction.isButton()) return;
 
         await db.stats.addButton()
+
+        //Prevent Executing tictactoe Buttons
+        if (tttInteractions.includes(interaction.customId))
+            return;
 
         const interactionID = interaction.customId
         const command = client.btnIntera.get(interactionID)
