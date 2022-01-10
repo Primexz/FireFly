@@ -36,6 +36,7 @@ module.exports = {
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
                 .setAuthor(user.user.username, user.user.displayAvatarURL({ dynamic: true }))
+                .addField("URL", `[Avatar URL](${user.user.displayAvatarURL({ dynamic: true })})`)
                 .setTitle(`👤 Avatar`)
                 .setImage(avatar)
                 .setFooter({
