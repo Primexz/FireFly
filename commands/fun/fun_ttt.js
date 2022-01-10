@@ -145,7 +145,7 @@ module.exports = {
             return interaction.editReply({embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle(":x: You can not play TicTacToe with yourself or an bot!").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]})
 
 
-        let alrdycheck = []
+        let componentsClicked = []
 
 
         interaction.channel.send(`<@${user.id}>`).then(m => m.delete());
@@ -185,7 +185,6 @@ module.exports = {
                         })
 
                             .then(async msg => {
-
                                 while (!gameOver) {
 
 
@@ -206,11 +205,11 @@ module.exports = {
 
                                         disableComponent(reaction)
 
-                                        //Mayby DisableComponent Bypass Fix
-                                        if (alrdycheck.includes(reaction.customId))
+                                        //DisableComponent Bypass Fix
+                                        if (componentsClicked.includes(reaction.customId))
                                             return;
 
-                                        alrdycheck.push(reaction.customId)
+                                        componentsClicked.push(reaction.customId)
 
                                         await addIntoSlot(flattenedEmojis.indexOf(reaction.customId), turn).then(async res => {
 
