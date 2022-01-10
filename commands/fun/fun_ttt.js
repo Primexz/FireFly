@@ -13,7 +13,12 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        await interaction.reply({embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setTitle("Loading TicTacToe..").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]})
+        await interaction.reply({
+            embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setTitle("Loading TicTacToe..").setFooter({
+                text: utils.Embeds.footerText,
+                iconURL: client.user.displayAvatarURL({dynamic: true})
+            }).setTimestamp(new Date())]
+        })
 
 
         let spacing = " "
@@ -137,12 +142,22 @@ module.exports = {
         try {
             user = await interaction.guild.members.fetch(interaction.options.get('user').value)
         } catch {
-            return interaction.editReply({embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle("I wasn't able to fetch this user on your guild!").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]})
+            return interaction.editReply({
+                embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle("I wasn't able to fetch this user on your guild!").setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: client.user.displayAvatarURL({dynamic: true})
+                }).setTimestamp(new Date())]
+            })
         }
 
 
         if (user.id == interaction.user.id || user.user.bot)
-            return interaction.editReply({embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle(":x: You can not play TicTacToe with yourself or an bot!").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]})
+            return interaction.editReply({
+                embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle(":x: You can not play TicTacToe with yourself or an bot!").setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: client.user.displayAvatarURL({dynamic: true})
+                }).setTimestamp(new Date())]
+            })
 
 
         let componentsClicked = []
@@ -153,7 +168,10 @@ module.exports = {
 
         interaction.editReply({
             components: [row],
-            embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("{user} has invited you to play Tic-Tac-Toe! Do you agree to join? You have 60 seconds to accept the invite.".replace(/{user}/g, `<@${interaction.user.id}>`)).setTitle("Tic-Tac-Toe Invitation").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+            embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("{user} has invited you to play Tic-Tac-Toe! Do you agree to join? You have 60 seconds to accept the invite.".replace(/{user}/g, `<@${interaction.user.id}>`)).setTitle("Tic-Tac-Toe Invitation").setFooter({
+                text: utils.Embeds.footerText,
+                iconURL: client.user.displayAvatarURL({dynamic: true})
+            }).setTimestamp(new Date())]
         })
             .then(async m => {
 
@@ -169,7 +187,10 @@ module.exports = {
                         interaction.channel.send(`<@${interaction.user.id}>`).then(m => m.delete());
                         interaction.editReply({
                             components: [],
-                            embeds: [new Discord.MessageEmbed().setColor(Utils.EmbedColors.Error).setDescription("{user} did not agree to play Tic-Tac-Toe!".replace(/{user}/g, `<@${user.id}>`)).setTitle("TicTacToe canceld!").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                            embeds: [new Discord.MessageEmbed().setColor(Utils.EmbedColors.Error).setDescription("{user} did not agree to play Tic-Tac-Toe!".replace(/{user}/g, `<@${user.id}>`)).setTitle("TicTacToe canceld!").setFooter({
+                                text: utils.Embeds.footerText,
+                                iconURL: client.user.displayAvatarURL({dynamic: true})
+                            }).setTimestamp(new Date())]
                         })
                     } else {
 
@@ -181,7 +202,10 @@ module.exports = {
 
                         interaction.editReply({
                             components: [tic1, tic2, tic3,],
-                            embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**Turn:**\n{turn}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{turn}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("Tic-Tac-Toe").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                            embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**Turn:**\n{turn}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{turn}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("Tic-Tac-Toe").setFooter({
+                                text: utils.Embeds.footerText,
+                                iconURL: client.user.displayAvatarURL({dynamic: true})
+                            }).setTimestamp(new Date())]
                         })
 
                             .then(async msg => {
@@ -190,15 +214,16 @@ module.exports = {
 
                                     await interaction.editReply({
                                         components: [tic1, tic2, tic3,],
-                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**Turn:**\n{turn}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{turn}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("Tic-Tac-Toe").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**Turn:**\n{turn}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{turn}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("Tic-Tac-Toe").setFooter({
+                                            text: utils.Embeds.footerText,
+                                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                                        }).setTimestamp(new Date())]
                                     })
 
 
                                     const filter = m => m.user.id == players[turn].id
 
                                     await msg.awaitMessageComponent({filter, max: 1}).then(async reaction => {
-
-
 
 
                                         reaction.deferUpdate()
@@ -220,23 +245,35 @@ module.exports = {
 
                                                     await interaction.editReply({
                                                         components: [],
-                                                        embeds: [new Discord.MessageEmbed().setColor("#fca903").setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**WINNER:**\n{winner}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{winner}/g, "Tie")).setTitle("TicTacToe | GAME OVER").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                                        embeds: [new Discord.MessageEmbed().setColor("#fca903").setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**WINNER:**\n{winner}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{winner}/g, "Tie")).setTitle("TicTacToe | GAME OVER").setFooter({
+                                                            text: utils.Embeds.footerText,
+                                                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                                                        }).setTimestamp(new Date())]
                                                     })
 
                                                     await interaction.channel.send({
                                                         components: [],
-                                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("GG! It was a tie {player-1} and {player-2}!".replace(/{player-1}/g, `<@${players[turn].id}>`).replace(/{player-2}/g, `<@${players[(turn == 1 ? 2 : 1)].id}>`)).setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("GG! It was a tie {player-1} and {player-2}!".replace(/{player-1}/g, `<@${players[turn].id}>`).replace(/{player-2}/g, `<@${players[(turn == 1 ? 2 : 1)].id}>`)).setFooter({
+                                                            text: utils.Embeds.footerText,
+                                                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                                                        }).setTimestamp(new Date())]
                                                     })
                                                 } else {
 
                                                     await interaction.editReply({
                                                         components: [],
-                                                        embeds: [new Discord.MessageEmbed().setColor(turn == 1 ? '#e03131' : '#ffe600').setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**WINNER:**\n{winner}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{winner}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("TicTacToe | GAME OVER").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                                        embeds: [new Discord.MessageEmbed().setColor(turn == 1 ? '#e03131' : '#ffe600').setDescription("❌ {player-1} **vs** ⭕ {player-2}\n\n{board}\n\n**WINNER:**\n{winner}".replace(/{player-1}/g, `<@${players[1].id}>`).replace(/{player-2}/g, `<@${players[2].id}>`).replace(/{board}/g, board.map((row, i) => row.join("")).join("\n").replace(/1 /g, '❌' + spacing).replace(/2 /g, '⭕' + spacing)).replace(/{winner}/g, `${turn == 1 ? "❌" : "⭕"} <@${players[turn].id}>`)).setTitle("TicTacToe | GAME OVER").setFooter({
+                                                            text: utils.Embeds.footerText,
+                                                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                                                        }).setTimestamp(new Date())]
                                                     })
 
                                                     await interaction.channel.send({
                                                         components: [],
-                                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("🎉🎉 Congrats! {winner}, you won the Tic-Tac-Toe game against {loser} 🎉🎉".replace(/{winner}/g, `<@${players[turn].id}>`).replace(/{loser}/g, `<@${players[(turn == 1 ? 2 : 1)].id}>`)).setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Default).setDescription("🎉🎉 Congrats! {winner}, you won the Tic-Tac-Toe game against {loser} 🎉🎉".replace(/{winner}/g, `<@${players[turn].id}>`).replace(/{loser}/g, `<@${players[(turn == 1 ? 2 : 1)].id}>`)).setFooter({
+                                                            text: utils.Embeds.footerText,
+                                                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                                                        }).setTimestamp(new Date())]
                                                     })
 
                                                 }
@@ -249,14 +286,16 @@ module.exports = {
                                             if (err == 'column full') {
                                                 return await interaction.editReply({
                                                     components: [],
-                                                    embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle("That column is full! Please select another column.").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                                                    embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setTitle("That column is full! Please select another column.").setFooter({
+                                                        text: utils.Embeds.footerText,
+                                                        iconURL: client.user.displayAvatarURL({dynamic: true})
+                                                    }).setTimestamp(new Date())]
                                                 })
                                             } else {
                                                 return console.log(err)
                                             }
                                         })
                                     })
-
                                 }
                             })
                     }
@@ -266,12 +305,13 @@ module.exports = {
                     console.log(err)
                     interaction.editReply({
                         components: [],
-                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setDescription("{user} did not accept your Tic-Tac-Toe invitation in time!".replace(/{user}/g, `<@${user.id}>`)).setTitle("TicTacToe canceld!").setFooter({text: utils.Embeds.footerText, iconURL: client.user.displayAvatarURL({dynamic: true})}).setTimestamp(new Date())]
+                        embeds: [new Discord.MessageEmbed().setColor(utils.EmbedColors.Error).setDescription("{user} did not accept your Tic-Tac-Toe invitation in time!".replace(/{user}/g, `<@${user.id}>`)).setTitle("TicTacToe canceld!").setFooter({
+                            text: utils.Embeds.footerText,
+                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                        }).setTimestamp(new Date())]
                     })
 
                 })
             })
-
-
     },
-};
+}
