@@ -3,6 +3,7 @@ const util = require("util");
 const utils = require("../../modules/utils");
 const {quote} = require("@discordjs/builders");
 const Permissions = Discord.Permissions.FLAGS
+const progressbar = require('string-progressbar');
 
 module.exports = {
 
@@ -20,6 +21,9 @@ module.exports = {
         const queue = client.distube.getQueue(interaction)
         const currentSong = queue.songs[0]
 
+        let percentage = queue.currentTime / currentSong.duration;
+        let progress = Math.round((100 * percentage));
+        const statusProgress = progressbar.splitBar(100, progress, 20)[0]
 
         interaction.reply({
             embeds: [new Discord.MessageEmbed()
@@ -38,6 +42,7 @@ module.exports = {
                 .addField("Autoplay", `${queue.autoplay ? "✅" : "❌"}`, true)
                 .addField("Bitrate", `${queue.voiceChannel.bitrate / 1000} kbps`)
                 .addField("Filter", queue.filters.join(", ") || "❌", true)
+                .addField(`\u200b`, `**${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
