@@ -54,7 +54,6 @@ module.exports = {
                 .addField("👤 User", `\`\`\`${utils.formatInt(userCount)}\`\`\``, true)
                 .addField("📁 Server", `\`\`\`${utils.formatInt(guilds)}\`\`\``, true)
                 .addField("🌐 Shards", `\`\`\`${shards}\`\`\``, true)
-
                 .addField("⌨️ Commands Used", `\`\`\`${currentDB.commands}\`\`\``, true)
                 .addField("🎵 Songs played", `\`\`\`${currentDB.songs}\`\`\``, true)
                 .addField("🖱️ Buttons clicked", `\`\`\`${currentDB.buttons}\`\`\``, true)
