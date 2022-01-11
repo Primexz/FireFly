@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fetch = require('node-fetch');
 const discordClient = require("../handlers/VariableHandler").client;
+const progressbar = require('string-progressbar');
+
 
 
 module.exports = {
@@ -78,6 +80,9 @@ module.exports = {
         const queue = client.distube.getQueue(interaction)
         const currentSong = queue.songs[0]
 
+        let percentage = queue.currentTime / currentSong.duration;
+        let progress = Math.round((100 * percentage));
+        const statusProgress = progressbar.splitBar(100, progress, 20)[0]
 
         interaction.message.edit({
             embeds: [new Discord.MessageEmbed()
@@ -96,6 +101,7 @@ module.exports = {
                 .addField("Autoplay", `${queue.autoplay ? "✅" : "❌"}`, true)
                 .addField("Bitrate", `${queue.voiceChannel.bitrate / 1000} kbps`)
                 .addField("Filter", queue.filters.join(", ") || "❌", true)
+                .addField(`\u200b`, `**${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
                 .setFooter({
                     text: this.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
