@@ -20,6 +20,8 @@ module.exports = {
                 .setDescription(`
         Here is a list of all important commands for FireFly.
         If you need details about a command, just enter the command in the chat to get more information.
+        
+        Do you need help? Enter our Discord server: [Server](https://discord.gg/JRzWEGzSWq)
 
         :musical_note: **__music__**
         > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`
