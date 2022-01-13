@@ -28,16 +28,34 @@ module.exports = {
         
         :bulb: **__other__**
         > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`
-        
-
-        __**Useful links**__
-        [Homepage](https://xyz.de/) | [Invite Pepe](https://discord.gg) | [Support Server](https://discord.gg) | [Vote](https://top.gg)
+       
                 `)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
                 })
                 .setTimestamp(new Date())],
+            components: [
+                new Discord.MessageActionRow()
+                    .addComponents(
+                        new Discord.MessageButton()
+                            .setLabel('Homepage')
+                            .setURL("https://pepebot.info")
+                            .setStyle('LINK'),
+                        new Discord.MessageButton()
+                            .setLabel('Invite FireFly')
+                            .setURL("https://discord.gg")
+                            .setStyle('LINK'),
+                        new Discord.MessageButton()
+                            .setLabel("Support Server")
+                            .setURL("https://discord.gg/JRzWEGzSWq")
+                            .setStyle("LINK"),
+                        new Discord.MessageButton()
+                            .setLabel("Invite")
+                            .setURL("https://top.gg")
+                            .setStyle("LINK")
+                    ),
+            ]
         })
 
     },
