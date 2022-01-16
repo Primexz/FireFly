@@ -24,7 +24,7 @@ module.exports = {
         Do you need help? Enter our Discord server: [Server](https://discord.gg/JRzWEGzSWq)
 
         :musical_note: **__music__**
-        > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`
+        > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`, \`\`queue\`\`
         
         :bulb: **__other__**
         > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`
