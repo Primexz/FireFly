@@ -34,7 +34,8 @@ module.exports = {
             .addSubcommand(subcommand =>
                 subcommand
                     .setName("queue")
-                    .setDescription("Get an overview of the songs that are currently added to the queue."),
+                    .setDescription("Get an overview of the songs that are currently added to the queue.")
+                    .addIntegerOption(option => option.setName("page").setDescription("Page Count").setRequired(false)),
             )
     ]
 }

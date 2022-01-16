@@ -17,22 +17,35 @@ module.exports = {
         if (utils.musicQueueEmptyCheck(client, interaction))
             return;
 
-
         await interaction.deferReply();
 
-        const page = interaction.options.getNumber('page') ? parseInt(interaction.options.getNumber('page')) : 1;
+
+        const page = interaction.options.getInteger('page') ? parseInt(interaction.options.getInteger('page')) : 1;
+        const itemsPerPage = 5;
 
         const queue = client.distube.getQueue(interaction).songs;
 
 
         let embedDescription = '';
-        queue.slice((page - 1) * 5, 5 * page).map((singleSong, i) => {
-            embedDescription += `**${i + 1}:** ${singleSong.name}\`\`\`Duration: ${singleSong.formattedDuration}\nArtist: ${singleSong.uploader.name} \`\`\` \n\n`
+        queue.slice((page - 1) * itemsPerPage, itemsPerPage * page).map((singleSong, i) => {
+            embedDescription += `**${i + 1 + (page - 1) * itemsPerPage}:** ${singleSong.name}\`\`\`Duration: ${singleSong.formattedDuration}\nArtist: ${singleSong.uploader.name} \`\`\` \n\n`
         })
 
-        const pageCount = Math.ceil(queue.length / 5)
+        const pageCount = Math.ceil(queue.length / itemsPerPage)
         if (page > pageCount || page <= 0)
-            return interaction.reply({content: "Invalid page count.", ephemeral: true});
+            return interaction.editReply({
+                embeds: [
+                    new Discord.MessageEmbed()
+                        .setColor(utils.EmbedColors.Error)
+                        .setTitle(`${utils.Icons.error} Invalid Page`)
+                        .setDescription(`Your input corresponds to an invalid page.\nThe maximum number of pages is **${Math.ceil(queue.length / itemsPerPage)}**`)
+                        .setFooter({
+                            text: `Page: ${page}/${Math.ceil(queue.length / itemsPerPage)}\n${utils.Embeds.footerText}`,
+                            iconURL: client.user.displayAvatarURL({dynamic: true})
+                        })
+                        .setTimestamp(new Date())
+                ]
+            });
 
         await interaction.editReply({
             content: null,
@@ -41,7 +54,7 @@ module.exports = {
                 .setTitle(`${utils.Icons.music} Music Queue`)
                 .setDescription(embedDescription)
                 .setFooter({
-                    text: `Page: ${page}/${Math.ceil(queue.length / 10)}\n${utils.Embeds.footerText}`,
+                    text: `Page: ${page}/${Math.ceil(queue.length / itemsPerPage)}\n${utils.Embeds.footerText}`,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
                 })
                 .setTimestamp(new Date())]
