@@ -12,6 +12,7 @@ module.exports = {
     async execute(client, interaction) {
 
         const songUrl = interaction.options.getString('url')
+        const forceSong = interaction.options.getBoolean('force') || false
 
 
         if (utils.usrNoVoice(interaction))
@@ -21,7 +22,7 @@ module.exports = {
 
         await interaction.deferReply()
 
-        await discordClient.distube.play(interaction, songUrl)
+        await discordClient.distube.play(interaction, songUrl, { skip: forceSong })
 
         await interaction.editReply({
             embeds: [new Discord.MessageEmbed()

@@ -14,7 +14,8 @@ module.exports = {
                 subcommand
                     .setName('play')
                     .setDescription('Add song to music queue')
-                    .addStringOption(option => option.setName('url').setDescription('YouTube, Spotify, SoundCloud URL, Search-Query of your song').setRequired(true)))
+                    .addStringOption(option => option.setName('url').setDescription('YouTube, Spotify, SoundCloud URL, Search-Query of your song').setRequired(true))
+                    .addBooleanOption(option => option.setName('force').setDescription('Force the added song to be played directly.').setRequired(false)))
             .addSubcommand(subcommand =>
                 subcommand
                     .setName('manager')
