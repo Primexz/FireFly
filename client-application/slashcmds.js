@@ -30,7 +30,11 @@ module.exports = {
                 subcommand
                     .setName("volume")
                     .setDescription("Set the volume of the current song in percent")
-                    .addIntegerOption(option => option.setName("percent").setDescription("Your new volume in percent").setRequired(true))
+                    .addIntegerOption(option => option.setName("percent").setDescription("Your new volume in percent").setRequired(true)))
+            .addSubcommand(subcommand =>
+                subcommand
+                    .setName("queue")
+                    .setDescription("Get an overview of the songs that are currently added to the queue."),
             )
     ]
 }
