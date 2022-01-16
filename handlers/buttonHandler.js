@@ -19,7 +19,7 @@ module.exports = async (client) => {
 
 
 
-    const tttInteractions = ["accept_tictactoe", "deny_tictactoe", utils.getEmoji(1), utils.getEmoji(2), utils.getEmoji(3), utils.getEmoji(4), utils.getEmoji(5), utils.getEmoji(6), utils.getEmoji(7), utils.getEmoji(8), utils.getEmoji(9),]
+    const ignoredButtons = ["accept_tictactoe", "deny_tictactoe", utils.getEmoji(1), utils.getEmoji(2), utils.getEmoji(3), utils.getEmoji(4), utils.getEmoji(5), utils.getEmoji(6), utils.getEmoji(7), utils.getEmoji(8), utils.getEmoji(9),]
 
     //Button Interactions
     client.on('interactionCreate', async interaction => {
@@ -27,8 +27,8 @@ module.exports = async (client) => {
 
         await db.stats.addButton()
 
-        //Prevent Executing tictactoe Buttons
-        if (tttInteractions.includes(interaction.customId))
+        //Prevent Executing Buttons like tictactoe
+        if (ignoredButtons.includes(interaction.customId))
             return;
 
         const interactionID = interaction.customId
