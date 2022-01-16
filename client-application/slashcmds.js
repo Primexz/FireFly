@@ -6,6 +6,7 @@ module.exports = {
         new SlashCommandBuilder().setName('stats').setDescription('Get statistics about FireFly'),
         new SlashCommandBuilder().setName('help').setDescription('Get information about all the commands of FireFly.'),
         new SlashCommandBuilder().setName("ttt").setDescription("Play TicTacToe with a teammate").addUserOption(option => option.setName("user").setDescription("The user you want to play against").setRequired(true)),
+        new SlashCommandBuilder().setName("shards").setDescription("Get an overview of the current shards from FireFly."),
         new SlashCommandBuilder()
             .setName('music')
             .setDescription('Manage all music features of FireFly')
@@ -35,7 +36,6 @@ module.exports = {
                 subcommand
                     .setName("queue")
                     .setDescription("Get an overview of the songs that are currently added to the queue.")
-                    .addIntegerOption(option => option.setName("page").setDescription("Page Count").setRequired(false)),
-            )
+                    .addIntegerOption(option => option.setName("page").setDescription("Page Count").setRequired(false)))
     ]
 }
