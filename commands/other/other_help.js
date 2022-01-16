@@ -51,7 +51,7 @@ module.exports = {
                             .setURL("https://discord.gg/JRzWEGzSWq")
                             .setStyle("LINK"),
                         new Discord.MessageButton()
-                            .setLabel("Invite")
+                            .setLabel("Vote")
                             .setURL("https://top.gg")
                             .setStyle("LINK")
                     ),
