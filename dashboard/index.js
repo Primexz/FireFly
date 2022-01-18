@@ -6,7 +6,6 @@ const passport = require(`passport`);
 const bodyParser = require("body-parser");
 const Strategy = require(`passport-discord`).Strategy;
 const BotConfig = require("../../Musicium/botconfig/config.json");
-const BotFilters = require("../../Musicium/botconfig/filters.json");
 const BotEmojis = require("../../Musicium/botconfig/emojis.json");
 
 
@@ -111,7 +110,6 @@ module.exports = client => {
           categories: client.categories, 
           commands: client.commands, 
           BotConfig: BotConfig,
-          BotFilters: BotFilters,
           BotEmojis: BotEmojis,
         });
     })
@@ -130,7 +128,6 @@ module.exports = client => {
         categories: client.categories, 
         commands: client.commands, 
         BotConfig: BotConfig,
-        BotFilters: BotFilters,
         BotEmojis: BotEmojis,
       })
     })
@@ -162,7 +159,6 @@ module.exports = client => {
         categories: client.categories, 
         commands: client.commands, 
         BotConfig: BotConfig,
-        BotFilters: BotFilters,
         BotEmojis: BotEmojis,
       });
     })
@@ -185,7 +181,6 @@ module.exports = client => {
         categories: client.categories, 
         commands: client.commands, 
         BotConfig: BotConfig,
-        BotFilters: BotFilters,
         BotEmojis: BotEmojis,
       });
     })
