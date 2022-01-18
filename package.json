@@ -7,18 +7,26 @@
     "@discordjs/rest": "^0.2.0-canary.0",
     "@distube/soundcloud": "^1.0.0",
     "@distube/spotify": "^1.0.0",
+    "@vue/cli": "^4.5.15",
     "better-sqlite3": "^7.4.5",
     "bufferutil": "^4.0.5",
     "discord.js": "^13.5.0",
     "distube": "^3.0.5",
     "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
     "libsodium-wrappers": "^0.7.9",
+    "memorystore": "^1.6.6",
     "node-gyp": "^8.4.1",
     "node-pre-gyp": "^0.17.0",
     "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "passport-discord": "^0.1.4",
     "pm2": "^5.1.2",
     "string-progressbar": "^1.0.4",
-    "utf-8-validate": "^5.0.7"
+    "utf-8-validate": "^5.0.7",
+    "vue": "^3.2.27"
   },
   "scripts": {
     "Dev-FireFly": "nodemon"

@@ -1,10 +1,36 @@
-const { ShardingManager } = require('discord.js');
+const discord = require('discord.js');
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
+const varHandl = require("./handlers/VariableHandler")
+const dbManager = require("./modules/database")
 
+//Create new DC Client and assign Flags
+const client = new discord.Client({
+    shards: 'auto', partials: ['CHANNEL'], intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES, discord.Intents.FLAGS.GUILD_MEMBERS, discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS, discord.Intents.FLAGS.DIRECT_MESSAGES, discord.Intents.FLAGS.GUILD_VOICE_STATES, discord.Intents.FLAGS.GUILD_INVITES, discord.Intents.FLAGS.DIRECT_MESSAGE_TYPING]
+});
 
-const manager = new ShardingManager('./bot.js', { token: botToken, totalShards: 'auto' });
+//Set Client Variable
+varHandl.set('client', client)
 
-manager.on('shardCreate', shard => console.log(`Started shard ${shard.id} (Total ${manager.totalShards} shards)`));
+//Load EventHandler
+require('./handlers/EventHandler').init(client)
 
-manager.spawn();
+//Load CommandHandler
+require('./handlers/CommandHandler')(client)
+
+//Load distubeHandler
+require('./handlers/distubeHandler')
+
+//Load buttonHandler
+require('./handlers/buttonHandler')(client)
+
+//Load selectMenuHandler
+require('./handlers/selectMenuHandler')(client)
+
+require('./dashboard/index')(client)
+
+//Prepare Database
+dbManager.stats.prepareDB()
+
+//Login with Token from env Variable
+client.login(botToken)
