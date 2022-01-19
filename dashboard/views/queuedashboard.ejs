@@ -38,11 +38,10 @@
                   <div class="card-img-overlay text-grey h-100 d-flex flex-column justify-content-end" style="background:#000000b0;max-width: 250px;width: 250px;">
                     <h5 class="card-title text-primary" style="font-size: 25px;"><%= guild.name %></h5>
                       <p class="card-text" style="font-size: 12px;font-style: italic;color: #b3b3b3">Show the current Queue of <b><%= guild.name %></b>'s with <b style="color:white"><%= botClient.distube.getQueue(guild.id) ? botClient.distube.getQueue(guild.id).songs.length : 0 %> Songs</b>!</p>
-                      <a style="font-size: 25px;"
-                        href="<%- bot.domain %>/queue/<%- guild.id %>" 
-                        class="mt-auto btn btn-lg btn-block btn-success">
-                        <i class="iconify" data-icon="ant-design:dashboard-filled"></i>Show Queue
-                      </a>
+
+                      <button onclick="location.href='/login'" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                          Show Queue
+                      </button>
      
                   </div>
                 </div>
