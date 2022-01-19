@@ -26,6 +26,9 @@ module.exports = {
         :musical_note: **__music__**
         > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`, \`\`queue\`\`
         
+        ✨ **__Fun__**
+         > \`\`ttt (TicTacToe)\`\`
+        
         :bulb: **__other__**
         > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`, \`\`shards\`\`
        
