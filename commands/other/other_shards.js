@@ -22,15 +22,14 @@ module.exports = {
         const shardGuilds = await client.shard.fetchClientValues('guilds.cache.size')
 
 
-
         await interaction.reply({
             content: null,
             embeds: [new Discord.MessageEmbed()
                 .setColor(utils.EmbedColors.Default)
                 .setTitle(`${utils.Icons.fire} FireFly Shards`)
                 .setFooter({
-                    text: utils.Embeds.footerText,
-                    iconURL: client.user.displayAvatarURL({dynamic: true})
+                    text: `You are on shard: ${interaction.guild.shard.id}\nutils.Embeds.footerText`,
+                    iconURL: client.user.displayAvatarURL({dynamic: true}),
                 })
                 .setTimestamp(new Date())],
         })
