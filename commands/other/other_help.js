@@ -27,7 +27,7 @@ module.exports = {
         > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`, \`\`queue\`\`
         
         :bulb: **__other__**
-        > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`
+        > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`, \`\`shards\`\`
        
                 `)
                 .setFooter({
