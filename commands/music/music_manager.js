@@ -42,7 +42,7 @@ module.exports = {
                 .addField("Autoplay", `> ${queue.autoplay ? "✅" : "❌"}`, true)
                 .addField("Bitrate", `> ${queue.voiceChannel.bitrate / 1000} kbps`)
                 .addField("Filter", `> ${queue.filters.join(", ") || "❌"}`, true)
-                .addField(`\u200b`, `> **${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
+                .addField(`\u200b`, `**${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
                 .setFooter({
                     text: utils.Embeds.footerText,
                     iconURL: client.user.displayAvatarURL({dynamic: true})
