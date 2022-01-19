@@ -16,11 +16,11 @@ module.exports = {
 
     async execute(client, interaction) {
 
-        const voiceStreams = client.voice.adapters.size
+        const voiceStreams = (await client.shard.fetchClientValues('voice.adapters.size')).reduce((acc, voiceCount) => acc + voiceCount, 0);
         const ping = client.ws.ping
         const shards = client.options.shardCount
-        const guilds = client.guilds.cache.size
-        const userCount = client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)
+        const guilds = (await client.shard.fetchClientValues('guilds.cache.size')).reduce((acc, guildCount) => acc + guildCount, 0)
+        const userCount = (await client.shard.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0))).reduce((acc, memberCount) => acc + memberCount, 0);
         const uptime = utils.formatTimestamp(client.uptime)
         const cpuCount = os.cpus().length
         const cpuModel = os.cpus()[0].model
