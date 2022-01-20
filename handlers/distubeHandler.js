@@ -59,13 +59,11 @@ discordClient.distube
         }
     )
     .on("addList", (queue, playlist) => {
-
             queue.textChannel.send({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Default)
                     .setTitle(`${utils.Icons.music} Added playlist`)
                     .addField('Playlist', playlist.name)
-                    .addField("Songs", utils.formatInt(playlist.songs.length))
                     .addField("Duration", playlist.formattedDuration)
                     .addField('Requested by', `${playlist.user}`)
                     .setFooter({
