@@ -33,7 +33,7 @@ module.exports = {
                  interaction.reply({
                     embeds: [new Discord.MessageEmbed()
                         .setColor(utils.EmbedColors.Default)
-                        .setTitle(`🎮 Poker Night`)
+                        .setTitle(`🎮 Watch Together`)
                         .setDescription(`I have created the invite for the game: "Watch Together".\nClick on the following link to join the game.\n\n--> **[Here](https://discord.gg/${invite.code})** <--`)
                         .setFooter({
                             text: `${utils.Embeds.footerText}`,
