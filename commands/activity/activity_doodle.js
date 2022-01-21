@@ -42,8 +42,8 @@ module.exports = {
                         .setTimestamp(new Date())
                     ]
                 })
+                interaction.channel.send(`https://discord.gg/${invite.code}`)
             })
             .catch(console.error);
-
     },
 };
