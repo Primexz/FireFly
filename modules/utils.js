@@ -199,4 +199,17 @@ module.exports = {
             await callback(array[index], index, array);
         }
     },
+
+    activityApplications: {
+        "youtube_together": "880218394199220334",
+        "watch_together_dev": "880218832743055411",
+        "fishington": "814288819477020702",
+        "chess_in_the_park": "832012774040141894",
+        "chess_in_the_park_dev": "832012586023256104",
+        "betrayal": "773336526917861400",
+        "doodlecrew": "878067389634314250",
+        "wordsnacks": "879863976006127627",
+        "lettertile": "879863686565621790",
+        "poker_night": "755827207812677713"
+    }
 }
