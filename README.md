@@ -1,5 +1,5 @@
 # FireFly
 <p align="center">
-  <img width="150" height="100" src="https://github.com/Primexz/FireFly/pictures/bot_log.png"> </br>
+  <img alt="avatar" style="border-radius: 50%;" width="160" height="160" src="./pictures/bot_logo.png"> </br>
   The best open-source discord bot that does everything you need
 </p>
