@@ -9,6 +9,7 @@ module.exports = {
         new SlashCommandBuilder().setName("shards").setDescription("Get an overview of the current shards from FireFly."),
         new SlashCommandBuilder().setName("poker").setDescription("Create poker activity game!"),
         new SlashCommandBuilder().setName("watch-together").setDescription("Create a watch-together game!"),
+        new SlashCommandBuilder().setName("doodle-crew").setDescription("Create a doodle-crew game! (Game like Skribbl)"),
         new SlashCommandBuilder()
             .setName('music')
             .setDescription('Manage all music features of FireFly')
