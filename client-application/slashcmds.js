@@ -7,6 +7,7 @@ module.exports = {
         new SlashCommandBuilder().setName('help').setDescription('Get information about all the commands of FireFly.'),
         new SlashCommandBuilder().setName("ttt").setDescription("Play TicTacToe with a teammate").addUserOption(option => option.setName("user").setDescription("The user you want to play against").setRequired(true)),
         new SlashCommandBuilder().setName("shards").setDescription("Get an overview of the current shards from FireFly."),
+        new SlashCommandBuilder().setName("poker").setDescription("Create poker activity game!"),
         new SlashCommandBuilder()
             .setName('music')
             .setDescription('Manage all music features of FireFly')

@@ -11,6 +11,7 @@
     "better-sqlite3": "^7.4.5",
     "bufferutil": "^4.0.5",
     "discord.js": "^13.5.0",
+    "discordjs-activity": "^1.4.2",
     "distube": "^3.0.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
