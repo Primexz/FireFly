@@ -23,13 +23,13 @@ module.exports = {
         
         Do you need help? Enter our Discord server: [Server](https://discord.gg/JRzWEGzSWq)
 
-        :musical_note: **__music__**
+        :musical_note: **__Music__**
         > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`, \`\`queue\`\`
         
         ✨ **__Fun__**
          > \`\`ttt (TicTacToe)\`\`
         
-        :bulb: **__other__**
+        :bulb: **__Other__**
         > \`\`help\`\`, \`\`avatar\`\`, \`\`stats\`\`, \`\`shards\`\`
        
                 `)
