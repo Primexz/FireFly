@@ -11,7 +11,14 @@ discordClient.distube = new DisTube(discordClient, {
     leaveOnEmpty: true,
     emitNewSongOnly: true,
     updateYouTubeDL: false,
-    plugins: [new SpotifyPlugin(), new SoundCloudPlugin()],
+    plugins: [
+        new SpotifyPlugin(
+            {
+                emitEventsAfterFetching: true
+            }
+        ),
+        new SoundCloudPlugin()
+    ],
 })
 
 
@@ -65,6 +72,7 @@ discordClient.distube
                     .setTitle(`${utils.Icons.music} Added playlist`)
                     .addField('Playlist', playlist.name)
                     .addField("Duration", playlist.formattedDuration)
+                    .addField("Song count", playlist.songs.length.toString())
                     .addField('Requested by', `${playlist.user}`)
                     .setFooter({
                         text: utils.Embeds.footerText,
