@@ -16,6 +16,7 @@ module.exports = {
         new SlashCommandBuilder().setName("betrayal").setDescription('Create a "betrayal" game!'),
         new SlashCommandBuilder().setName("checkers").setDescription('Create a "checkers" game!'),
         new SlashCommandBuilder().setName("letterleague").setDescription('Create a "letterleague" game!'),
+        new SlashCommandBuilder().setName("spellcast").setDescription('Create a "spellcast" game!'),
         new SlashCommandBuilder()
             .setName('music')
             .setDescription('Manage all music features of FireFly')
