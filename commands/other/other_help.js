@@ -23,6 +23,9 @@ module.exports = {
         
         Do you need help? Enter our Discord server: [Server](https://discord.gg/JRzWEGzSWq)
 
+        ☀️ **__Activity__**
+        > \`\`betrayal\`\`, \`\`checkers\`\`, \`\`chess\`\`, \`\`doodle-crew\`\`, \`\`fishington\`\`, \`\`letterleague\`\`, \`\`poker\`\`, \`\`spellcast\`\`, \`\`watch-together\`\`, \`\`wordsnacks\`\`
+
         :musical_note: **__Music__**
         > \`\`play\`\`, \`\`manager\`\`, \`\`filter\`\`, \`\`nowplaying\`\`, \`\`volume\`\`, \`\`queue\`\`
         
