@@ -8,6 +8,11 @@ module.exports = {
 
     name: 'music_play',
     permissions: [],
+    botRequiredPerms: [
+        Permissions.SEND_MESSAGES,
+        Permissions.CONNECT,
+        Permissions.SPEAK,
+    ],
 
     async execute(client, interaction) {
 
