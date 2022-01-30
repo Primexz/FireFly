@@ -46,11 +46,11 @@ module.exports = {
                     .addComponents(
                         new Discord.MessageButton()
                             .setLabel('Homepage')
-                            .setURL("https://pepebot.info")
+                            .setURL("https://firefly.pepebot.info")
                             .setStyle('LINK'),
                         new Discord.MessageButton()
                             .setLabel('Invite FireFly')
-                            .setURL("https://discord.gg")
+                            .setURL("https://discord.com/api/oauth2/authorize?client_id=925731507388174367&permissions=8&scope=bot%20applications.commands")
                             .setStyle('LINK'),
                         new Discord.MessageButton()
                             .setLabel("Support Server")
@@ -58,7 +58,7 @@ module.exports = {
                             .setStyle("LINK"),
                         new Discord.MessageButton()
                             .setLabel("Vote")
-                            .setURL("https://top.gg")
+                            .setURL("https://top.gg/de/bot/925731507388174367")
                             .setStyle("LINK")
                     ),
             ]
