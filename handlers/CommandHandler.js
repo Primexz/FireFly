@@ -47,8 +47,9 @@ module.exports = async (client) => {
                     embeds: [new Discord.MessageEmbed()
                         .setColor(utils.EmbedColors.Error)
                         .setTitle(`${utils.Icons.error} Missing Bot Permissions`)
+                        .setDescription("I need the following permissions to execute the command correctly.")
                         .addField("Command", commandName)
-                        .addField("Required Perms", requiredPerms)
+                        .addField("Required Permissions", requiredPerms)
                         .setFooter({
                             text: utils.Embeds.footerText,
                             iconURL: discordClient.user.displayAvatarURL({dynamic: true})
