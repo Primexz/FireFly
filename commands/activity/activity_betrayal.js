@@ -8,6 +8,11 @@ module.exports = {
 
     name: 'betrayal',
     permissions: [],
+    botRequiredPerms: [
+        Permissions.MANAGE_CHANNELS,
+        Permissions.VIEW_CHANNEL,
+        Permissions.CREATE_INSTANT_INVITE
+    ],
 
     async execute(client, interaction) {
         if (!interaction.member.voice.channel) {
