@@ -48,7 +48,9 @@ module.exports = async (client) => {
                         .setColor(utils.EmbedColors.Error)
                         .setTitle(`${utils.Icons.error} Missing Bot Permissions`)
                         .setDescription("I need the following permissions to execute the command correctly.")
-                        .addField("Command", commandName)
+                        .addField("Command", commandName, true)
+                        .addField("Guild", interaction.guild.name, true)
+                        .addField("Requester", `<@${interaction.member.id}>`, true)
                         .addField("Required Permissions", requiredPerms)
                         .setFooter({
                             text: utils.Embeds.footerText,
