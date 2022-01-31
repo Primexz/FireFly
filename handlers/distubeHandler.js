@@ -11,6 +11,10 @@ discordClient.distube = new DisTube(discordClient, {
     leaveOnEmpty: true,
     emitNewSongOnly: true,
     updateYouTubeDL: false,
+    ytdlOptions: {
+        highWaterMark: 1 << 24,
+        quality: 'highestaudio'
+    },
     plugins: [
         new SpotifyPlugin(
             {

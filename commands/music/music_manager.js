@@ -9,6 +9,9 @@ module.exports = {
 
     name: 'music_manager',
     permissions: [],
+    botRequiredPerms: [
+        Permissions.SEND_MESSAGES,
+    ],
 
     async execute(client, interaction) {
 

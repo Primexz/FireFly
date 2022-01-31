@@ -23,7 +23,7 @@ module.exports = {
             return interaction.reply({
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Error)
-                    .setTitle(`${utils.Icons.error} No So g`)
+                    .setTitle(`${utils.Icons.error} No Song`)
                     .setDescription("There is no song to skip in your queue.")
                     .setFooter({
                         text: utils.Embeds.footerText,

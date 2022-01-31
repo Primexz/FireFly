@@ -35,19 +35,21 @@ module.exports = async (client) => {
 
         const command = client.commands.get(commandFileName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandFileName));
 
-        if (!interaction.channel.permissionsFor(client.user).has(command.botRequiredPerms)) {
-            return await interaction.reply({
-                ephemeral: true,
-                embeds: [new Discord.MessageEmbed()
-                    .setColor(utils.EmbedColors.Error)
-                    .setTitle(`${utils.Icons.error} Missing Permissions`)
-                    .setDescription("The bot needs more permissions.")
-                    .setFooter({
-                        text: utils.Embeds.footerText,
-                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
-                    })
-                    .setTimestamp(new Date())]
-            })
+        if (command.botRequiredPerms) {
+            if (!interaction.channel.permissionsFor(client.user).has(command.botRequiredPerms)) {
+                return await interaction.reply({
+                    ephemeral: true,
+                    embeds: [new Discord.MessageEmbed()
+                        .setColor(utils.EmbedColors.Error)
+                        .setTitle(`${utils.Icons.error} Missing Permissions`)
+                        .setDescription("The bot needs more permissions.")
+                        .setFooter({
+                            text: utils.Embeds.footerText,
+                            iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                        })
+                        .setTimestamp(new Date())]
+                })
+            }
         }
 
 
