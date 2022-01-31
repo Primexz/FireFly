@@ -37,12 +37,18 @@ module.exports = async (client) => {
 
         if (command.botRequiredPerms) {
             if (!interaction.channel.permissionsFor(client.user).has(command.botRequiredPerms)) {
+                let requiredPerms = "";
+                await command.botRequiredPerms.forEach(value => {
+                   requiredPerms += `${interaction.channel.permissionsFor(client.user).has(value) ? ":white_check_mark:" : ":x:"}  **${Object.keys(Discord.Permissions.FLAGS).find(key => Discord.Permissions.FLAGS[key] === value)}**\n`
+                })
+
                 return await interaction.reply({
                     ephemeral: true,
                     embeds: [new Discord.MessageEmbed()
                         .setColor(utils.EmbedColors.Error)
-                        .setTitle(`${utils.Icons.error} Missing Permissions`)
-                        .setDescription("The bot needs more permissions.")
+                        .setTitle(`${utils.Icons.error} Missing Bot Permissions`)
+                        .addField("Command", commandName)
+                        .addField("Required Perms", requiredPerms)
                         .setFooter({
                             text: utils.Embeds.footerText,
                             iconURL: discordClient.user.displayAvatarURL({dynamic: true})
