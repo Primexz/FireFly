@@ -9,6 +9,9 @@ module.exports = {
 
     name: 'ttt',
     permissions: [],
+    botRequiredPerms: [
+        Permissions.SEND_MESSAGES
+    ],
 
 
     async execute(client, interaction) {
