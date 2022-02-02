@@ -39,7 +39,7 @@ module.exports = async (client) => {
             if (!interaction.channel.permissionsFor(client.user).has(command.botRequiredPerms)) {
                 let requiredPerms = "";
                 await command.botRequiredPerms.forEach(value => {
-                   requiredPerms += `${interaction.channel.permissionsFor(client.user).has(value) ? ":white_check_mark:" : ":x:"}  **${Object.keys(Discord.Permissions.FLAGS).find(key => Discord.Permissions.FLAGS[key] === value)}**\n`
+                    requiredPerms += `${interaction.channel.permissionsFor(client.user).has(value) ? ":white_check_mark:" : ":x:"}  **${Object.keys(Discord.Permissions.FLAGS).find(key => Discord.Permissions.FLAGS[key] === value)}**\n`
                 })
 
                 return await interaction.reply({
@@ -80,14 +80,17 @@ module.exports = async (client) => {
 
 
         if (command.permissions) {
-            const authorPerms = interaction.channel.permissionsFor(interaction.member);
+            const authorPerms = await interaction.channel?.permissionsFor(interaction.member);
             if (!authorPerms || !authorPerms.has(command.permissions)) {
 
                 const emb = new Discord.MessageEmbed()
                 emb.setTitle(":x: Error")
-                emb.setColor(Utils.EmbedColors.Error)
+                emb.setColor(utils.EmbedColors.Error)
                 emb.setDescription(`**You are missing** the following **permissions**: \`\`${command.permissions.join(`\`\`, \`\``)}\`\``)
-                emb.setFooter("Pepe Discord Bot", client.user.displayAvatarURL({dynamic: true}))
+                emb.setFooter({
+                    text: utils.Embeds.footerText,
+                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                })
                 emb.setTimestamp(new Date())
 
                 return interaction.reply({embeds: [emb], ephemeral: true});
