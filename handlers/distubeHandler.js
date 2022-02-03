@@ -12,7 +12,7 @@ discordClient.distube = new DisTube(discordClient, {
     emitNewSongOnly: true,
     updateYouTubeDL: false,
     ytdlOptions: {
-        highWaterMark: 1 << 24,
+        highWaterMark: 1 << 25,
         quality: 'highestaudio'
     },
     plugins: [
