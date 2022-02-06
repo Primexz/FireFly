@@ -8,7 +8,7 @@ module.exports = manager => {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
 
-    app.get('/cmds', (req, res) => {
+    app.get('/api//cmds', (req, res) => {
         console.log("Recieved GET request on route /cmds")
         const commands = [];
         slashCmds.slashCmdData.forEach(command => {
@@ -38,7 +38,7 @@ module.exports = manager => {
 
 
 
-    app.get('/stats', async (req, res) => {
+    app.get('/api//stats', async (req, res) => {
         console.log("Recieved GET request on route /stats")
         const promises = [
             manager.fetchClientValues('guilds.cache.size'),
