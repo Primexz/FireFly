@@ -26,6 +26,23 @@ module.exports = async (client) => {
 
         if (!interaction.isCommand()) return;
 
+        if(interaction.channel.type === "DM")
+            return interaction.reply({
+                ephemeral: true,
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Error)
+                    .setTitle(`${utils.Icons.error} No Interactions in DM`)
+                    .setDescription(`
+                    FireFly does not support interactions in the DM's.
+
+                    Please use all Slash Command on a server/build.`)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+
         await db.stats.addCommand()
 
         const commandName = interaction.commandName
