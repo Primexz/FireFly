@@ -89,18 +89,33 @@ discordClient.distube
     )
     .on("searchNoResult", (message, query) => message.channel.send("No result found for: " + query))
     .on("error", (channel, e) => {
-        channel.send({
-            embeds: [new Discord.MessageEmbed()
-                .setColor(utils.EmbedColors.Error)
-                .setTitle(`${utils.Icons.error} An error occurred`)
-                .setDescription(`\`\`\`${e.toString().slice(0, 1974)}\`\`\``)
-                .setFooter({
-                    text: utils.Embeds.footerText,
-                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
-                })
-                .setTimestamp(new Date())]
-        })
-        console.error(e)
+        if ((e.toString()).includes("PlayError")) {
+            channel.send({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Error)
+                    .setTitle(`${utils.Icons.error} PlayError`)
+                    .setDescription(`--> **Failed to play your song!** <--\n\nFor more information join our support server: [Click here](https://discord.com/invite/JRzWEGzSWq)`)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+        } else {
+            channel.send({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Error)
+                    .setTitle(`${utils.Icons.error} An unknown error occurred`)
+                    .setDescription(`**Join our support server to report this issue: [Click here](https://discord.com/invite/JRzWEGzSWq)**\n\n`)
+                    .addField("Error Message", `\`\`\`${e.toString().slice(0, 1974).replace("DisTubeError", "")}\`\`\``)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())]
+            })
+            console.error(e)
+        }
     })
     .on("empty", queue => {
         queue.textChannel.send({
