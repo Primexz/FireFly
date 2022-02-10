@@ -73,7 +73,9 @@ module.exports = {
                     return dislikes
                 }
             });
-        });
+        }).catch(() => {
+            return 0;
+        })
     },
 
     updateMusicMng: async function (interaction, client) {
