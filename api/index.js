@@ -20,6 +20,7 @@ module.exports = manager => {
     app.use(express.json());
     app.use(helmet())
 
+
     app.get('/api/cmds', (req, res) => {
         console.log("Recieved GET request on route /cmds")
         const commands = [];
@@ -75,6 +76,23 @@ module.exports = manager => {
                 res.send(stats);
             }).catch(err => console.log(err));
     });
+
+    //404 Page Middleware
+    app.use((req, res) => {
+        res.status(404).send(`
+            <h1>404 - Page not found</h1>
+            Your requested route was not found on the server!
+        `)
+    })
+
+    app.use(function (err, req, res, next) {
+        console.error(err.stack)
+        res.status(500).send(`
+            <h1>500 - Internal Server Error</h1>
+            An unknown error occurred!
+            Please contact the owner of the bot! (Prime#7066)
+        `)
+    })
 
     app.listen(port, () => {
         console.log(`API listening at http://localhost:${port}`);
