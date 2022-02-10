@@ -48,6 +48,7 @@ module.exports = {
 
         await interaction.deferReply()
 
+
         await discordClient.distube.play(interaction.member.voice?.channel, songUrl, {
             member: interaction.member,
             textChannel: interaction.channel,

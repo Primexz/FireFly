@@ -5,12 +5,13 @@ const Discord = require('discord.js')
 const utils = require('../modules/utils')
 const {SoundCloudPlugin} = require("@distube/soundcloud");
 const db = require('../modules/database')
+const { YtDlpPlugin } = require("@distube/yt-dlp");
 
 discordClient.distube = new DisTube(discordClient, {
+    youtubeDL: false,
     leaveOnStop: true,
     leaveOnEmpty: true,
     emitNewSongOnly: true,
-    updateYouTubeDL: false,
     ytdlOptions: {
         highWaterMark: 1 << 25,
         quality: 'highestaudio'
@@ -21,7 +22,8 @@ discordClient.distube = new DisTube(discordClient, {
                 emitEventsAfterFetching: true
             }
         ),
-        new SoundCloudPlugin()
+        new SoundCloudPlugin(),
+        new YtDlpPlugin()
     ],
 })
 
