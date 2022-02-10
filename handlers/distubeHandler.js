@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 const utils = require('../modules/utils')
 const {SoundCloudPlugin} = require("@distube/soundcloud");
 const db = require('../modules/database')
-const { YtDlpPlugin } = require("@distube/yt-dlp");
+const {YtDlpPlugin} = require("@distube/yt-dlp");
 
 discordClient.distube = new DisTube(discordClient, {
     youtubeDL: false,
@@ -145,3 +145,6 @@ discordClient.distube
                 .setTimestamp(new Date())]
         })
     })
+    .on("initQueue", queue => {
+        queue.volume = 100;
+    });
