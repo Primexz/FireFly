@@ -72,7 +72,7 @@ discordClient.distube
     .on("addList", (queue, playlist) => {
             queue.textChannel.send({
                 embeds: [new Discord.MessageEmbed()
-                    .setColor(utils.EmbedColors.Default)
+                    .setColor(utils.EmbedColors.Success)
                     .setTitle(`${utils.Icons.music} Added playlist`)
                     .addField('Playlist', playlist.name)
                     .addField("Duration", playlist.formattedDuration)

@@ -51,6 +51,7 @@ module.exports = {
         await discordClient.distube.play(interaction.member.voice?.channel, songUrl, {
             member: interaction.member,
             textChannel: interaction.channel,
+            skip: forceSong
         });
 
         await interaction.editReply({
