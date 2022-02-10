@@ -36,7 +36,7 @@ module.exports = {
                 .setThumbnail(currentSong.thumbnail)
                 .addField(":eye: Views", `> ${currentSong.views ? utils.formatInt(currentSong.views) : "NaN"}`, true)
                 .addField("👍 Likes", `> ${currentSong.likes ? utils.formatInt(currentSong.likes) : "NaN"}`, true)
-                .addField("👎 Dislikes", `> ${utils.formatInt(currentSong.source != "soundcloud" ? await utils.getYtDislikes(currentSong.id) : "NaN")}`, true)
+                .addField("👎 Dislikes", `> ${currentSong.source == "youtube" ? utils.formatInt(await utils.getYtDislikes(currentSong.id) ) : "NaN"}`, true)
                 .addField("Time", `> ${queue.formattedCurrentTime}`, true)
                 .addField("Duration", `> ${currentSong.formattedDuration}`, true)
                 .addField("Queue", `> ${queue.songs.length <= 1 ? "1 song" : `${queue.songs.length} songs`} - ${queue.formattedDuration}`, true)

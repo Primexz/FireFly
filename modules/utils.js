@@ -94,7 +94,7 @@ module.exports = {
                 .setThumbnail(currentSong.thumbnail)
                 .addField(":eye: Views", `> ${currentSong.views ? this.formatInt(currentSong.views) : "NaN"}`, true)
                 .addField("👍 Likes", `> ${currentSong.likes ? this.formatInt(currentSong.likes) : "NaN"}`, true)
-                .addField("👎 Dislikes", `> ${this.formatInt(currentSong.source != "soundcloud" ? await this.getYtDislikes(currentSong.id) : "NaN")}`, true)
+                .addField("👎 Dislikes", `> ${currentSong.source == "youtube" ? this.formatInt(await this.getYtDislikes(currentSong.id) ) : "NaN"}`, true)
                 .addField("Time", `> ${queue.formattedCurrentTime}`, true)
                 .addField("Duration", `> ${currentSong.formattedDuration}`, true)
                 .addField("Queue", `> ${queue.songs.length <= 1 ? "1 song" : `${queue.songs.length} songs`} - ${queue.formattedDuration}`, true)
