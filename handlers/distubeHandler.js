@@ -41,6 +41,7 @@ discordClient.distube
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Default)
                     .setTitle(`${utils.Icons.music} Playing Song`)
+                    .setThumbnail(song.thumbnail)
                     .addField('Song', song.name)
                     .addField("Duration", song.formattedDuration)
                     .addField('Requested by', `${song.user}`)
