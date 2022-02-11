@@ -21,7 +21,7 @@ module.exports = manager => {
     app.use(helmet())
 
 
-    app.get('/api/cmds', (req, res) => {
+    app.get('/api/1.0/cmds', (req, res) => {
         console.log("Recieved GET request on route /cmds")
         const commands = [];
         slashCmds.slashCmdData.forEach(command => {
@@ -51,7 +51,7 @@ module.exports = manager => {
 
 
 
-    app.get('/api/stats', async (req, res) => {
+    app.get('/api/1.0/stats', async (req, res) => {
         console.log("Recieved GET request on route /stats")
         const promises = [
             manager.fetchClientValues('guilds.cache.size'),
