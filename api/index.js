@@ -46,7 +46,7 @@ module.exports = manager => {
 
         dbStats.songs = currentDB.songs
         dbStats.commands = currentDB.commands
-        dbStats.buttons = currentDB.commands
+        dbStats.buttons = currentDB.buttons
     }, 15000)
 
 
