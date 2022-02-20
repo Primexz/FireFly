@@ -1,8 +1,18 @@
 const Discord = require('discord.js');
-const util = require("util");
 const utils = require("../../modules/utils");
 const discordClient = require("../../handlers/VariableHandler").client;
 const Permissions = Discord.Permissions.FLAGS
+const {MessageActionRow, MessageSelectMenu} = require('discord.js');
+
+
+function stringIsAValidUrl(s) {
+    try {
+        new URL(s);
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
 
 module.exports = {
 
@@ -13,6 +23,7 @@ module.exports = {
         Permissions.CONNECT,
         Permissions.SPEAK,
     ],
+
 
     async execute(client, interaction) {
 
@@ -49,17 +60,127 @@ module.exports = {
         await interaction.deferReply()
 
 
-        await discordClient.distube.play(interaction.member.voice?.channel, songUrl, {
-            member: interaction.member,
-            textChannel: interaction.channel,
-            skip: forceSong
-        });
+        if (stringIsAValidUrl(songUrl)) {
+            await discordClient.distube.play(interaction.member.voice?.channel, songUrl, {
+                member: interaction.member,
+                textChannel: interaction.channel,
+                skip: forceSong
+            });
 
-        await interaction.editReply({
-            embeds: [new Discord.MessageEmbed()
-                .setColor(utils.EmbedColors.Default)
-                .setTitle(`${utils.Icons.music} Loading Music-Player..`)
-            ]
-        })
+            await interaction.editReply({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Default)
+                    .setTitle(`${utils.Icons.music} Loading Music-Player..`)
+                ]
+            })
+        } else {
+
+            let searchResult;
+            try {
+                searchResult = await discordClient.distube.search(songUrl)
+            } catch (e) {
+                if (e.errorCode === "NO_RESULT") {
+                    return interaction.editReply({
+                        components: [],
+                        embeds: [new Discord.MessageEmbed()
+                            .setColor(utils.EmbedColors.Error)
+                            .setTitle(`${utils.Icons.error} No Result`)
+                            .setDescription(`FireFly did not find any songs under the entered search term!`)
+                            .setFooter({
+                                text: utils.Embeds.footerText,
+                                iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                            })
+                            .setTimestamp(new Date())]
+                    })
+                } else {
+                    return interaction.editReply({
+                        components: [],
+                        embeds: [new Discord.MessageEmbed()
+                            .setColor(utils.EmbedColors.Error)
+                            .setTitle(`${utils.Icons.error} Unknown error`)
+                            .setDescription(`An unexpected error occurred while resolving your search query!`)
+                            .setFooter({
+                                text: utils.Embeds.footerText,
+                                iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                            })
+                            .setTimestamp(new Date())]
+                    })
+                }
+
+            }
+
+            const rowOptions = [];
+            searchResult.forEach(((value, index) => {
+                rowOptions.push({
+                    label: `${index + 1}: ${value.name}`,
+                    description: value.uploader.name,
+                    value: value.url
+                })
+            }))
+
+
+            await interaction.editReply(
+                {
+                    components: [new MessageActionRow()
+                        .addComponents(
+                            new MessageSelectMenu()
+                                .setCustomId('music-search_select')
+                                .setPlaceholder('Please choose your desired song!')
+                                .addOptions(rowOptions),
+                        )
+                    ],
+                    embeds: [
+                        new Discord.MessageEmbed()
+                            .setColor(utils.EmbedColors.Default)
+                            .setTitle(`${utils.Icons.music} Choose a song`)
+                            .setDescription(`Please select a song you want to play.\nYou will see the ${searchResult.length} best search results based on your search term: ${songUrl}`)
+                            .setFooter({
+                                text: `--> You have 60 seconds to choose a song! <--\n${utils.Embeds.footerText}`,
+                                iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                            })
+                            .setTimestamp(new Date())
+                    ]
+                })
+                .then(async m => {
+
+                    const filter = m => m.user.id === interaction.user.id
+                    await m.awaitMessageComponent({
+                        filter,
+                        max: 1,
+                        time: 60000,
+                        errors: ['time']
+                    }).then(async reaction => {
+                        await reaction.deferUpdate();
+
+                        const songToPlay = searchResult.find((songs) => songs.url === reaction.values[0])
+
+                        await discordClient.distube.play(interaction.member.voice?.channel, songToPlay, {
+                            member: interaction.member,
+                            textChannel: interaction.channel,
+                            skip: forceSong
+                        });
+
+                        await interaction.editReply({
+                            embeds: [new Discord.MessageEmbed()
+                                .setColor(utils.EmbedColors.Default)
+                                .setTitle(`${utils.Icons.music} Loading Music-Player..`)
+                            ]
+                        })
+                    }).catch(() => {
+                        return interaction.editReply({
+                            components: [],
+                            embeds: [new Discord.MessageEmbed()
+                                .setColor(utils.EmbedColors.Error)
+                                .setTitle(`${utils.Icons.error} No Response`)
+                                .setDescription(`You didn't choose a song within 6ß seconds. The search is now canceled!`)
+                                .setFooter({
+                                    text: utils.Embeds.footerText,
+                                    iconURL: discordClient.user.displayAvatarURL({dynamic: true})
+                                })
+                                .setTimestamp(new Date())]
+                        })
+                    })
+                })
+        }
     },
 };
