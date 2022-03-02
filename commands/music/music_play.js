@@ -143,7 +143,7 @@ module.exports = {
                 })
                 .then(async m => {
 
-                    const filter = m => m.user.id === interaction.user.id
+                    const filter = m => m.user.id === interaction.user.id && m.customId === "music-search_select"
                     await m.awaitMessageComponent({
                         filter,
                         max: 1,
@@ -172,7 +172,7 @@ module.exports = {
                             embeds: [new Discord.MessageEmbed()
                                 .setColor(utils.EmbedColors.Error)
                                 .setTitle(`${utils.Icons.error} No Response`)
-                                .setDescription(`You didn't choose a song within 6ß seconds. The search is now canceled!`)
+                                .setDescription(`You didn't choose a song within 60 seconds. The search is now canceled!`)
                                 .setFooter({
                                     text: utils.Embeds.footerText,
                                     iconURL: discordClient.user.displayAvatarURL({dynamic: true})
