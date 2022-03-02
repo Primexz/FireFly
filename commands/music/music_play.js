@@ -93,6 +93,7 @@ module.exports = {
                             .setTimestamp(new Date())]
                     })
                 } else {
+                    console.error('Detected FireFly-Error: ', e)
                     return interaction.editReply({
                         components: [],
                         embeds: [new Discord.MessageEmbed()
