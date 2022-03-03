@@ -28,6 +28,7 @@
     "passport": "^0.5.2",
     "passport-discord": "^0.1.4",
     "pm2": "^5.1.2",
+    "redis": "^4.0.4",
     "string-progressbar": "^1.0.4",
     "utf-8-validate": "^5.0.7",
     "vue": "^3.2.27"

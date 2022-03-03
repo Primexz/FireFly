@@ -3,6 +3,8 @@ require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
 const varHandl = require("./handlers/VariableHandler")
 const dbManager = require("./modules/database")
+const { rCache } = require('./modules/redis')
+
 
 //Create new DC Client and assign Flags
 const client = new discord.Client({
@@ -16,9 +18,6 @@ varHandl.set('client', client)
 //Load EventHandler
 require('./handlers/EventHandler').init(client)
 
-//Load CommandHandler
-require('./handlers/CommandHandler')(client)
-
 //Load distubeHandler
 require('./handlers/distubeHandler')
 
@@ -31,5 +30,10 @@ require('./handlers/selectMenuHandler')(client)
 //Prepare Database
 dbManager.stats.prepareDB()
 
-//Login with Token from env Variable
-client.login(botToken)
+client.login(botToken).then(async () => {
+    const redisClient = await new rCache().init()
+    varHandl.set('redisClient', redisClient)
+
+    //load commandHandler after redis is done
+    require('./handlers/CommandHandler')(client)
+})

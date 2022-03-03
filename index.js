@@ -1,12 +1,40 @@
-const { ShardingManager } = require('discord.js');
+const {ShardingManager} = require('discord.js');
+const {rCache} = require("./modules/redis");
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
+const manager = new ShardingManager('./bot.js', {token: botToken, totalShards: 'auto'});
+const db = require("./modules/database")
 
-
-const manager = new ShardingManager('./bot.js', { token: botToken, totalShards: 'auto' });
+async function updateRedis(rClient) {
+    const voiceStreams = (await manager.fetchClientValues('voice.adapters.size')).reduce((acc, voiceCount) => acc + voiceCount, 0);
+    const guilds = (await manager.fetchClientValues('guilds.cache.size')).reduce((acc, guildCount) => acc + guildCount, 0)
+    const userCount = (await manager.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0))).reduce((acc, memberCount) => acc + memberCount, 0);
+    const currentDB = await db.stats.getStats()
+    rClient.hSet('statistics', {
+        voiceStreams: voiceStreams,
+        guilds: guilds,
+        userCount: userCount,
+        commands: currentDB.commands,
+        buttons: currentDB.buttons,
+        songs: currentDB.songs
+    })
+}
 
 manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id} (Total ${manager.totalShards} shards)`));
 
 manager.spawn().then(function () {
+    //start FireFly API
     require('./api/index')(manager)
+
+    //manage redis data
+    const {rCache} = require('./modules/redis')
+    const redisCache = new rCache('main')
+    redisCache.init().then(async (redisClient) => {
+        await updateRedis(redisClient)
+        setInterval(async () => {
+            await updateRedis(redisClient)
+        }, 30000)
+    })
 });
+
+
