@@ -21,6 +21,8 @@ module.exports = {
         if (utils.musicQueueEmptyCheck(client, interaction))
             return
 
+        await interaction.reply("Loading MusicManager..")
+
         const queue = client.distube.getQueue(interaction)
         const currentSong = queue.songs[0]
 
@@ -28,84 +30,82 @@ module.exports = {
         let progress = Math.round((100 * percentage));
         const statusProgress = progressbar.splitBar(100, progress, 20)[0]
 
-        interaction.reply({
-            embeds: [new Discord.MessageEmbed()
-                .setColor(utils.EmbedColors.Default)
-                .setTitle(`${utils.Icons.music} Music Manager`)
-                .setDescription(`Here you can make all the important settings to the music. For more settings have a look at the subcommands of /music.\n[${currentSong.name}](${currentSong.url})`)
-                .setThumbnail(currentSong.thumbnail)
-                .addField(":eye: Views", `> ${currentSong.views ? utils.formatInt(currentSong.views) : "N/A"}`, true)
-                .addField("👍 Likes", `> ${currentSong.likes ? utils.formatInt(currentSong.likes) : "N/A"}`, true)
-                .addField("👎 Dislikes", `> ${currentSong.source == "youtube" ? utils.formatInt(await utils.getYtDislikes(currentSong.id)) : "N/A"}`, true)
-                .addField("Time", `> ${queue.formattedCurrentTime}`, true)
-                .addField("Duration", `> ${currentSong.formattedDuration}`, true)
-                .addField("Queue", `> ${queue.songs.length <= 1 ? "1 song" : `${queue.songs.length} songs`} - ${queue.formattedDuration}`, true)
-                .addField("Volume", `> ${queue.volume}%`, true)
-                .addField("Loop", `> ${queue.repeatMode ? (queue.repeatMode === 2 ? "Queue" : "Song") : "❌"}`, true)
-                .addField("Autoplay", `> ${queue.autoplay ? "✅" : "❌"}`, true)
-                .addField("Bitrate", `> ${queue.voiceChannel.bitrate / 1000} kbps`)
-                .addField("Filter", `> ${queue.filters.join(", ") || "❌"}`, true)
-                .addField(`\u200b`, `**${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
-                .setFooter({
-                    text: utils.Embeds.footerText,
-                    iconURL: client.user.displayAvatarURL({dynamic: true})
-                })
-                .setTimestamp(new Date())],
-            components: [
-                new Discord.MessageActionRow()
-                    .addComponents(
-                        new Discord.MessageButton()
-                            .setCustomId('music-mng_play')
-                            .setLabel('Play')
-                            .setEmoji('▶️')
-                            .setStyle('PRIMARY')
-                            .setDisabled(queue.playing),
-                        new Discord.MessageButton()
-                            .setCustomId('music-mng_pause')
-                            .setLabel('Pause')
-                            .setEmoji('⏸')
-                            .setStyle('PRIMARY')
-                            .setDisabled(queue.playing ? false : true),
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_stop")
-                            .setLabel("Stop")
-                            .setEmoji("⏹")
-                            .setStyle("SECONDARY"),
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_previous")
-                            .setLabel("Previous")
-                            .setEmoji("⬅️")
-                            .setStyle("PRIMARY"),
+        utils.getYtDislikes(currentSong.id).then(dislikes => {
+            interaction.editReply({
+                embeds: [new Discord.MessageEmbed()
+                    .setColor(utils.EmbedColors.Default)
+                    .setTitle(`${utils.Icons.music} Music Manager`)
+                    .setDescription(`Here you can make all the important settings to the music. For more settings have a look at the subcommands of /music.\n[${currentSong.name}](${currentSong.url})`)
+                    .setThumbnail(currentSong.thumbnail)
+                    .addField(":eye: Views", `> ${currentSong.views ? utils.formatInt(currentSong.views) : "N/A"}`, true)
+                    .addField("👍 Likes", `> ${currentSong.likes ? utils.formatInt(currentSong.likes) : "N/A"}`, true)
+                    .addField("👎 Dislikes", `> ${currentSong.source == "youtube" ? utils.formatInt(dislikes) : "N/A"}`, true)
+                    .addField("Time", `> ${queue.formattedCurrentTime}`, true)
+                    .addField("Duration", `> ${currentSong.formattedDuration}`, true)
+                    .addField("Queue", `> ${queue.songs.length <= 1 ? "1 song" : `${queue.songs.length} songs`} - ${queue.formattedDuration}`, true)
+                    .addField("Volume", `> ${queue.volume}%`, true)
+                    .addField("Loop", `> ${queue.repeatMode ? (queue.repeatMode === 2 ? "Queue" : "Song") : "❌"}`, true)
+                    .addField("Autoplay", `> ${queue.autoplay ? "✅" : "❌"}`, true)
+                    .addField("Bitrate", `> ${queue.voiceChannel.bitrate / 1000} kbps`)
+                    .addField("Filter", `> ${queue.filters.join(", ") || "❌"}`, true)
+                    .addField(`\u200b`, `**${queue.formattedCurrentTime}**  ${statusProgress}  **${currentSong.formattedDuration}**`)
+                    .setFooter({
+                        text: utils.Embeds.footerText,
+                        iconURL: client.user.displayAvatarURL({dynamic: true})
+                    })
+                    .setTimestamp(new Date())],
+                components: [
+                    new Discord.MessageActionRow()
+                        .addComponents(
+                            new Discord.MessageButton()
+                                .setCustomId('music-mng_play')
+                                .setLabel('Play')
+                                .setEmoji('▶️')
+                                .setStyle('PRIMARY')
+                                .setDisabled(queue.playing),
+                            new Discord.MessageButton()
+                                .setCustomId('music-mng_pause')
+                                .setLabel('Pause')
+                                .setEmoji('⏸')
+                                .setStyle('PRIMARY')
+                                .setDisabled(queue.playing ? false : true),
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_stop")
+                                .setLabel("Stop")
+                                .setEmoji("⏹")
+                                .setStyle("SECONDARY"),
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_previous")
+                                .setLabel("Previous")
+                                .setEmoji("⬅️")
+                                .setStyle("PRIMARY"),
 
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_skip")
-                            .setLabel("Skip")
-                            .setEmoji("➡️")
-                            .setStyle("PRIMARY")
-                    ),
-                new Discord.MessageActionRow()
-                    .addComponents(
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_repeat")
-                            .setLabel("Repeat")
-                            .setEmoji("🔄")
-                            .setStyle("PRIMARY"),
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_autoplay")
-                            .setLabel("Autoplay")
-                            .setEmoji("⏏️")
-                            .setStyle(queue.autoplay ? "SUCCESS" : "DANGER"),
-                        new Discord.MessageButton()
-                            .setCustomId("music-mng_refresh")
-                            .setLabel("Refresh")
-                            .setEmoji("🔃")
-                            .setStyle("PRIMARY"),
-                    )
-
-
-            ]
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_skip")
+                                .setLabel("Skip")
+                                .setEmoji("➡️")
+                                .setStyle("PRIMARY")
+                        ),
+                    new Discord.MessageActionRow()
+                        .addComponents(
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_repeat")
+                                .setLabel("Repeat")
+                                .setEmoji("🔄")
+                                .setStyle("PRIMARY"),
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_autoplay")
+                                .setLabel("Autoplay")
+                                .setEmoji("⏏️")
+                                .setStyle(queue.autoplay ? "SUCCESS" : "DANGER"),
+                            new Discord.MessageButton()
+                                .setCustomId("music-mng_refresh")
+                                .setLabel("Refresh")
+                                .setEmoji("🔃")
+                                .setStyle("PRIMARY"),
+                        )
+                ]
+            })
         })
-
-
     },
 };
