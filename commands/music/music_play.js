@@ -165,7 +165,8 @@ module.exports = {
                             embeds: [new Discord.MessageEmbed()
                                 .setColor(utils.EmbedColors.Default)
                                 .setTitle(`${utils.Icons.music} Loading Music-Player..`)
-                            ]
+                            ],
+                            components: []
                         })
                     }).catch(() => {
                         return interaction.editReply({
