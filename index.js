@@ -6,6 +6,7 @@ const manager = new ShardingManager('./bot.js', {token: botToken, totalShards: '
 const db = require("./modules/database")
 
 async function updateRedis(rClient) {
+    const time1 = Date.now()
     const voiceStreams = (await manager.fetchClientValues('voice.adapters.size')).reduce((acc, voiceCount) => acc + voiceCount, 0);
     const guilds = (await manager.fetchClientValues('guilds.cache.size')).reduce((acc, guildCount) => acc + guildCount, 0)
     const userCount = (await manager.broadcastEval(c => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0))).reduce((acc, memberCount) => acc + memberCount, 0);
@@ -18,6 +19,8 @@ async function updateRedis(rClient) {
         buttons: currentDB.buttons,
         songs: currentDB.songs
     })
+    const time2 = Date.now()
+    console.log(`[SHARD-MANAGER] Synced values with Redis => ${time2-time1}ms`)
 }
 
 manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id} (Total ${manager.totalShards} shards)`));
