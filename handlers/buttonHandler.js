@@ -13,9 +13,9 @@ module.exports = async (client) => {
         for (const file of commandFiles) {
             const command = require(`../buttons/${folder}/${file}`);
             client.btnIntera.set(command.id, command);
-            console.log(`Loaded ${file} btn interaction!`)
         }
     }
+    console.log(`[FF-BH] Loaded ${client.btnIntera.size} buttons`)
 
 
 

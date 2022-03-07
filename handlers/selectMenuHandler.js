@@ -11,9 +11,9 @@ module.exports = async (client) => {
         for (const file of commandFiles) {
             const command = require(`../selects/${folder}/${file}`);
             client.selectIntera.set(command.id, command);
-            console.log(`Loaded ${file} select interaction!`)
         }
     }
+    console.log(`[FF-SMH] Loaded ${client.selectIntera.size} select menus`)
 
 
 

@@ -22,7 +22,7 @@ module.exports = manager => {
 
 
     app.get('/api/1.0/cmds', (req, res) => {
-        console.log("Recieved GET request on route /cmds")
+        console.log("[FF-API] Recieved GET request on route /cmds")
         const commands = [];
         slashCmds.slashCmdData.forEach(command => {
             commands.push({
@@ -52,7 +52,7 @@ module.exports = manager => {
 
 
     app.get('/api/1.0/stats', async (req, res) => {
-        console.log("Recieved GET request on route /stats")
+        console.log("[FF-API] Recieved GET request on route /stats")
         const promises = [
             manager.fetchClientValues('guilds.cache.size'),
             manager.broadcastEval(c => c.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)),
@@ -95,6 +95,6 @@ module.exports = manager => {
     })
 
     app.listen(port, () => {
-        console.log(`API listening at http://localhost:${port}`);
+        console.log(`[FF-API] Listening at http://localhost:${port}`);
     });
 };

@@ -35,8 +35,7 @@ module.exports = {
                 .forEach(event => {
                     module.exports.set(event.split(".js")[0], require('../events/' + event));
                 })
-            console.log(`${module.exports.events.length}  events have been loaded`);
-
+            console.log(`[FF-EH] Loaded ${module.exports.events.length} events`)
             return module.exports;
         })
     }

@@ -8,6 +8,7 @@
     "@distube/soundcloud": "^1.1.0",
     "@distube/spotify": "^1.2.1",
     "@distube/yt-dlp": "^1.0.2",
+    "@distube/ytdl-core": "^4.10.0",
     "@vue/cli": "^4.5.15",
     "better-sqlite3": "^7.4.5",
     "bufferutil": "^4.0.5",

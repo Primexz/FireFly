@@ -23,7 +23,7 @@ async function updateRedis(rClient) {
     console.log(`[SHARD-MANAGER] Synced values with Redis => ${time2-time1}ms`)
 }
 
-manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id} (Total ${manager.totalShards} shards)`));
+manager.on('shardCreate', shard => console.log(`[SHARD-MANAGER] Started shard ${shard.id} (Total ${manager.totalShards} shards)`));
 
 manager.spawn().then(function () {
     //start FireFly API

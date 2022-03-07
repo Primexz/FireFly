@@ -6,8 +6,6 @@ const db = require('../modules/database')
 
 module.exports = async (client) => {
 
-    console.log("Loading Commands..")
-
 //Load All Commands
     client.commands = new Discord.Collection();
     const commandFolders = fs.readdirSync('./commands');
@@ -16,9 +14,9 @@ module.exports = async (client) => {
         for (const file of commandFiles) {
             const command = require(`../commands/${folder}/${file}`);
             client.commands.set(command.name, command);
-            console.log(`Loaded ${file} command!`)
         }
     }
+    console.log(`[FF-CH] Loaded ${client.commands.size} commands`)
 
 
 //Handle SlashCommands
