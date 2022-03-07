@@ -1,5 +1,5 @@
 const {ShardingManager} = require('discord.js');
-const {rCache} = require("./modules/redis");
+const {rCache} = require("./modules/redisController");
 require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
 const manager = new ShardingManager('./bot.js', {token: botToken, totalShards: 'auto'});
@@ -30,7 +30,7 @@ manager.spawn().then(function () {
     require('./api/index')(manager)
 
     //manage redis data
-    const {rCache} = require('./modules/redis')
+    const {rCache} = require('./modules/redisController')
     const redisCache = new rCache('main')
     redisCache.init().then(async (redisClient) => {
         await updateRedis(redisClient)

@@ -3,7 +3,7 @@ require('dotenv').config();
 const botToken = process.env.BOT_TOKEN
 const varHandl = require("./handlers/VariableHandler")
 const dbManager = require("./modules/database")
-const { rCache } = require('./modules/redis')
+const { rCache } = require('./modules/redisController')
 
 
 //Create new DC Client and assign Flags
