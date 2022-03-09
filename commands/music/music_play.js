@@ -113,9 +113,9 @@ module.exports = {
             const rowOptions = [];
             searchResult.forEach(((value, index) => {
                 rowOptions.push({
-                    label: `${index + 1}: ${value.name}`,
-                    description: value.uploader.name,
-                    value: value.url
+                    label: `${index + 1}: ${value.name}`.slice(0, 100),
+                    description: value.uploader.name.slice(0, 100),
+                    value: value.url.slice(0, 100)
                 })
             }))
 
