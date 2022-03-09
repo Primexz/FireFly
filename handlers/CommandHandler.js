@@ -41,7 +41,7 @@ module.exports = async (client) => {
                     .setTimestamp(new Date())]
             })
 
-        await db.stats.addCommand()
+        db.stats.addCommand()
 
         const commandName = interaction.commandName
         const subCommand = interaction.options._subcommand ? interaction.options.getSubcommand() : null
@@ -57,7 +57,7 @@ module.exports = async (client) => {
                     requiredPerms += `${interaction.channel.permissionsFor(client.user).has(value) ? ":white_check_mark:" : ":x:"}  **${Object.keys(Discord.Permissions.FLAGS).find(key => Discord.Permissions.FLAGS[key] === value)}**\n`
                 })
 
-                return await interaction.reply({
+                return interaction.reply({
                     ephemeral: true,
                     embeds: [new Discord.MessageEmbed()
                         .setColor(utils.EmbedColors.Error)
@@ -78,7 +78,7 @@ module.exports = async (client) => {
 
 
         if (!command) {
-            return await interaction.reply({
+            return interaction.reply({
                 ephemeral: true,
                 embeds: [new Discord.MessageEmbed()
                     .setColor(utils.EmbedColors.Error)
@@ -112,12 +112,10 @@ module.exports = async (client) => {
             }
         }
 
-
         try {
             await command.execute(client, interaction);
         } catch (error) {
             console.error(error);
         }
-
     })
 }
