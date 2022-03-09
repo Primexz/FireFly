@@ -167,7 +167,6 @@ module.exports = {
                     }).then(async reaction => {
                         await reaction.deferUpdate();
 
-                        console.log(searchResult)
                         const songToPlay = searchResult.find((songs) => songs.url === reaction.values[0])
 
                         await discordClient.distube.play(interaction.member.voice?.channel, songToPlay, {
