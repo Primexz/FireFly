@@ -25,7 +25,7 @@ module.exports = async (client) => {
     client.on('interactionCreate', async interaction => {
         if (!interaction.isButton()) return;
 
-        await db.stats.addButton()
+        db.stats.addButton()
 
         //Prevent Executing Buttons like tictactoe
         if (ignoredButtons.includes(interaction.customId))
