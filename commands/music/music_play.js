@@ -3,6 +3,7 @@ const utils = require("../../modules/utils");
 const discordClient = require("../../handlers/VariableHandler").client;
 const Permissions = Discord.Permissions.FLAGS
 const {MessageActionRow, MessageSelectMenu} = require('discord.js');
+const {redisClient} = require("../../handlers/VariableHandler");
 
 
 function stringIsAValidUrl(s) {
@@ -77,7 +78,20 @@ module.exports = {
 
             let searchResult;
             try {
-                searchResult = await discordClient.distube.search(songUrl)
+                const redisClient = require("../../handlers/VariableHandler").redisClient
+                let redisSearchCache = await redisClient.get(`searchCache_${songUrl.replace(' ', '--')}`) || null
+
+
+                if(redisSearchCache == null || redisClient == 'null'){
+                    searchResult = await discordClient.distube.search(songUrl)
+                    await redisClient.set(`searchCache_${songUrl.replace(' ', '--')}`, JSON.stringify(searchResult), {
+                        EX: 43200 //12 hours
+                    })
+                }
+                else {
+                    searchResult = JSON.parse(redisSearchCache)
+                }
+
             } catch (e) {
                 if (e.errorCode === "NO_RESULT") {
                     return interaction.editReply({
@@ -153,6 +167,7 @@ module.exports = {
                     }).then(async reaction => {
                         await reaction.deferUpdate();
 
+                        console.log(searchResult)
                         const songToPlay = searchResult.find((songs) => songs.url === reaction.values[0])
 
                         await discordClient.distube.play(interaction.member.voice?.channel, songToPlay, {
