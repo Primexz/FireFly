@@ -78,9 +78,10 @@ module.exports = {
 
             let searchResult;
             try {
+
+                //redis search result caching
                 const redisClient = require("../../handlers/VariableHandler").redisClient
                 let redisSearchCache = await redisClient.get(`searchCache_${songUrl.replace(' ', '--')}`) || null
-
 
                 if(redisSearchCache == null || redisClient == 'null'){
                     searchResult = await discordClient.distube.search(songUrl)

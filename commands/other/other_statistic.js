@@ -24,8 +24,8 @@ module.exports = {
         const uptime = utils.formatTimestamp(client.uptime)
         const cpuCount = os.cpus().length
         const cpuModel = os.cpus()[0].model
-        const usedMemory = os.freemem() / (1024 * 1024 * 1024)
         const totalMemory = os.totalmem() / (1024 * 1024 * 1024)
+        const usedMemory =(require('os').totalmem() - require('os').freemem()) / (1024 * 1024 * 1024)
         const memoryPercent = `${((os.freemem() / os.totalmem()) * 100).toFixed(2)}`
 
         const memoryEmoji = memoryPercent < 50 ? ":green_circle:" : (memoryPercent < 90 ? ":yellow_circle:" : ":red_circle:");
